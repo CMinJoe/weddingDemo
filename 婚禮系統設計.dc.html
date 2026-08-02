@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Forum&amp;family=Pinyon+Script&amp;family=Noto+Serif+TC:wght@400;500;600;700&amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#e7e4da;font-family:"Noto Sans TC",system-ui,sans-serif}
+a{color:#495232}a:hover{color:#5f6d43}
+.dv-turn{padding:44px 48px 36px;border-bottom:1px solid rgba(73,82,50,.14);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:12px;margin:0 0 26px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:4px 9px;background:#495232;color:#fff;border-radius:5px;text-decoration:none;letter-spacing:.05em}
+.dv-tname{font:600 15px/1.2 "Noto Serif TC",serif;color:#2c3326}
+.dv-tsub{font:400 12px/1.4 "Noto Sans TC",sans-serif;color:#7d8570;margin-left:2px}
+.dv-opts{display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:11px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(73,82,50,.12);color:#495232;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 12px/1.35 "Noto Sans TC",sans-serif;color:#6b7360}
+.dv-olabel b{color:#2c3326;font-weight:600}
+.dv-opt:target .dv-oid{background:#495232;color:#fff}
+.dv-next{margin:26px 0 0;font:12.5px/1.6 "Noto Sans TC",sans-serif;color:#6b7360}
+.hdr{padding:52px 48px 30px;border-bottom:1px solid rgba(73,82,50,.14)}
+.phone{position:relative;width:300px;height:620px;background:#14170f;border-radius:42px;padding:9px;box-shadow:0 20px 50px -18px rgba(44,51,38,.55),0 4px 14px rgba(0,0,0,.14)}
+.scr{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:#fff}
+.notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:96px;height:24px;background:#14170f;border-radius:0 0 16px 16px;z-index:60}
+.sb{position:absolute;top:0;left:0;right:0;height:44px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 22px 6px;z-index:50;font:600 12px "Noto Sans TC",sans-serif}
+.sbdot{display:flex;gap:3px;align-items:center}
+</style>
+</helmet>
+
+<div class="hdr">
+<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+<span style="font:400 30px/1 'Pinyon Script',cursive;color:#495232">Happy Crystal</span>
+<span style="width:1px;height:26px;background:rgba(73,82,50,.3)"></span>
+<h1 style="margin:0;font:600 22px/1.2 'Noto Serif TC',serif;color:#2c3326">多場次婚禮實時報到與喜餅核銷系統</h1>
+</div>
+<p style="margin:12px 0 0;max-width:760px;font:400 13.5px/1.7 'Noto Sans TC',sans-serif;color:#6b7360">第一輪 · 全模組概覽（各給代表畫面）。賓客端喜帖首頁提供 <a class="dv-oid" href="#1a">1a</a> <a class="dv-oid" href="#1b">1b</a> <a class="dv-oid" href="#1c">1c</a> 三個方向。所有畫面先以手機框呈現；後台/工作人員視覺定案後再延伸桌機與 iPad。用 <b style="color:#2c3326">陳凱文</b> ·《品均＆凱文》萊特｜午宴 為範例。</p>
+<div style="display:flex;gap:20px;align-items:center;margin-top:20px;flex-wrap:wrap">
+<div style="display:flex;gap:0;border-radius:8px;overflow:hidden;border:1px solid rgba(73,82,50,.2)">
+<span style="width:64px;height:40px;background:#495232;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;font:600 9px ui-monospace,monospace;color:#DFDFCF">495232</span>
+<span style="width:64px;height:40px;background:#DFDFCF;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;font:600 9px ui-monospace,monospace;color:#5f6d43">DFDFCF</span>
+<span style="width:64px;height:40px;background:#FFF9F1;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;font:600 9px ui-monospace,monospace;color:#7d8570">FFF9F1</span>
+</div>
+<span style="font:400 13px 'Noto Sans TC',sans-serif;color:#7d8570">字體 · <span style="font-family:'Pinyon Script',cursive;font-size:20px;color:#495232">Aurora Script</span> + <span style="font-family:'Forum',serif;font-size:16px;color:#495232">Forum</span> + Noto Serif/Sans TC</span>
+</div>
+</div>
+
+<!-- ================= TURN 4 — TEMPLATES & DUP IMPORT ================= -->
+<section class="dv-turn" id="opt4">
+<div class="dv-thd"><a class="dv-tid" href="#opt4">第四輪 · 後台補強</a><span class="dv-tname">卡片設定 · 選版型（1a／1b／1c）· Excel 重複匯入</span><span class="dv-tsub">版型直接對應探索階段三方向；重複匯入偵測與處理</span></div>
+<div class="dv-opts">
+
+<!-- 4a card settings with template gallery -->
+<div class="dv-opt" id="4a">
+<div class="dv-olabel"><a class="dv-oid" href="#4a">4a</a><b>卡片設定 · 選喜帖版型</b>1a／1b／1c 三選一</div>
+<div style="width:760px;background:#FFF9F1;border:1px solid rgba(73,82,50,.16);border-radius:18px;overflow:hidden;box-shadow:0 22px 50px -22px rgba(44,51,38,.4)">
+<div style="background:#495232;padding:16px 22px;display:flex;align-items:center;gap:12px">
+<span style="font:400 20px 'Pinyon Script',cursive;color:#FFF9F1">Happy Crystal</span>
+<span style="width:1px;height:18px;background:rgba(255,249,241,.3)"></span>
+<span style="font:600 14px 'Noto Serif TC',serif;color:#FFF9F1">喜帖卡片設定 · 選擇版型</span>
+<span style="margin-left:auto;font:400 11.5px 'Noto Sans TC',sans-serif;color:#c3caae">修改後賓客端即時更新</span>
+</div>
+<div style="padding:20px 22px">
+<div style="font:600 12.5px 'Noto Serif TC',serif;color:#2c3326">選擇喜帖版型 <span style="font-weight:400;font-size:10.5px;color:#8a9270">— 對應探索階段的三個方向</span></div>
+<div style="margin-top:12px;display:flex;gap:14px">
+<!-- 1a option -->
+<div style="flex:1;border:1px solid rgba(73,82,50,.18);border-radius:14px;padding:12px;background:#fff;display:flex;flex-direction:column;align-items:center;gap:9px">
+<div style="width:100%;height:174px;border-radius:12px;overflow:hidden;background:#FFF9F1;display:flex;flex-direction:column;align-items:center;padding:16px 12px">
+<div style="font:400 6.5px 'Forum',serif;letter-spacing:.3em;color:#8a9270">THE WEDDING OF</div>
+<div style="margin-top:8px;width:66px;height:88px;border-radius:33px 33px 0 0;background:linear-gradient(160deg,#c9cfb4,#aab493)"></div>
+<div style="margin-top:8px;font:400 17px/1 'Pinyon Script',cursive;color:#495232">Pinjun &amp; Kevin</div>
+<div style="margin-top:3px;font:500 6px 'Noto Serif TC',serif;letter-spacing:.2em;color:#2c3326">品均 ＆ 凱文</div>
+</div>
+<div style="display:flex;align-items:center;gap:7px"><span style="width:16px;height:16px;border-radius:50%;border:2px solid #b9bfa6"></span><a class="dv-oid" href="#1a">1a</a><span style="font:500 12px 'Noto Sans TC',sans-serif;color:#2c3326">拱形植物</span></div>
+</div>
+<!-- 1b option selected -->
+<div style="flex:1;border:2px solid #495232;border-radius:14px;padding:12px;background:#fff;display:flex;flex-direction:column;align-items:center;gap:9px;position:relative;box-shadow:0 10px 24px -12px rgba(73,82,50,.5)">
+<span style="position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;background:#495232;display:flex;align-items:center;justify-content:center;color:#fff;font:700 12px sans-serif;z-index:2">✓</span>
+<div style="width:100%;height:174px;border-radius:12px;overflow:hidden;background:#495232;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">
+<div style="font:400 6.5px 'Forum',serif;letter-spacing:.3em;color:#c3caae">誠摯邀請您蒞臨</div>
+<div style="width:66px;height:66px;border-radius:50%;background:#FFF9F1;display:flex;align-items:center;justify-content:center"><span style="font:400 28px 'Pinyon Script',cursive;color:#495232">P&amp;K</span></div>
+<div style="font:400 8px 'Forum',serif;letter-spacing:.2em;color:#FFF9F1">品均 ＆ 凱文</div>
+</div>
+<div style="display:flex;align-items:center;gap:7px"><span style="width:16px;height:16px;border-radius:50%;background:#495232;display:flex;align-items:center;justify-content:center"><span style="width:7px;height:7px;border-radius:50%;background:#fff"></span></span><a class="dv-oid" href="#1b">1b</a><span style="font:600 12px 'Noto Sans TC',sans-serif;color:#2c3326">沉浸深綠</span></div>
+</div>
+<!-- 1c option -->
+<div style="flex:1;border:1px solid rgba(73,82,50,.18);border-radius:14px;padding:12px;background:#fff;display:flex;flex-direction:column;align-items:center;gap:9px">
+<div style="width:100%;height:174px;border-radius:12px;overflow:hidden;background:#FFF9F1;display:flex;flex-direction:column;padding:14px 12px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(73,82,50,.22);padding-bottom:6px"><span style="font:400 11px 'Pinyon Script',cursive;color:#495232">Save the Date</span><span style="font:400 6px 'Forum',serif;color:#8a9270">05 / 30</span></div>
+<div style="margin-top:14px;font:400 32px/.9 'Forum',serif;color:#2c3326">品均<br><span style="font-size:15px;color:#8a9270">＆</span><br>凱文</div>
+<div style="margin-top:auto;align-self:flex-end;width:56px;height:56px;border-radius:28px 28px 0 0;background:linear-gradient(160deg,#c9cfb4,#a7b28f)"></div>
+</div>
+<div style="display:flex;align-items:center;gap:7px"><span style="width:16px;height:16px;border-radius:50%;border:2px solid #b9bfa6"></span><a class="dv-oid" href="#1c">1c</a><span style="font:500 12px 'Noto Sans TC',sans-serif;color:#2c3326">極簡編輯</span></div>
+</div>
+</div>
+<div style="margin-top:18px;display:flex;gap:26px;align-items:flex-start">
+<div><div style="font:600 12px 'Noto Serif TC',serif;color:#2c3326">主題色</div><div style="margin-top:9px;display:flex;gap:9px"><span style="width:24px;height:24px;border-radius:50%;background:#495232;box-shadow:0 0 0 2px #FFF9F1,0 0 0 3.5px #495232"></span><span style="width:24px;height:24px;border-radius:50%;background:#7a5c46"></span><span style="width:24px;height:24px;border-radius:50%;background:#3d4d5c"></span><span style="width:24px;height:24px;border-radius:50%;background:#8a3f47"></span></div></div>
+<div style="flex:1"><div style="font:600 12px 'Noto Serif TC',serif;color:#2c3326">顯示模組 <span style="font-weight:400;font-size:10.5px;color:#8a9270">— 決定選單裡出現哪些功能</span></div>
+<div style="margin-top:9px;display:flex;flex-wrap:wrap;gap:8px">
+<span style="display:flex;align-items:center;gap:7px;background:#fff;border:1px solid rgba(73,82,50,.14);border-radius:20px;padding:6px 12px"><span style="font:500 12px 'Noto Sans TC',sans-serif;color:#2c3326">報到 QR</span><span style="width:30px;height:17px;border-radius:9px;background:#495232;position:relative"><span style="position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#fff"></span></span></span>
+<span style="display:flex;align-items:center;gap:7px;background:#fff;border:1px solid rgba(73,82,50,.14);border-radius:20px;padding:6px 12px"><span style="font:500 12px 'Noto Sans TC',sans-serif;color:#2c3326">喜餅</span><span style="width:30px;height:17px;border-radius:9px;background:#495232;position:relative"><span style="position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#fff"></span></span></span>
+<span style="display:flex;align-items:center;gap:7px;background:#fff;border:1px solid rgba(73,82,50,.14);border-radius:20px;padding:6px 12px"><span style="font:500 12px 'Noto Sans TC',sans-serif;color:#2c3326">桌位指引</span><span style="width:30px;height:17px;border-radius:9px;background:#495232;position:relative"><span style="position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#fff"></span></span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 4b excel duplicate re-import -->
+<div class="dv-opt" id="4b">
+<div class="dv-olabel"><a class="dv-oid" href="#4b">4b</a><b>Excel 重複匯入 · 偵測與處理</b></div>
+<div style="width:680px;background:#FFF9F1;border:1px solid rgba(73,82,50,.16);border-radius:18px;overflow:hidden;box-shadow:0 22px 50px -22px rgba(44,51,38,.4)">
+<div style="background:#495232;padding:16px 22px;display:flex;align-items:center;gap:12px">
+<span style="font:400 20px 'Pinyon Script',cursive;color:#FFF9F1">Happy Crystal</span>
+<span style="width:1px;height:18px;background:rgba(255,249,241,.3)"></span>
+<span style="font:600 14px 'Noto Serif TC',serif;color:#FFF9F1">匯入賓客名單 · 偵測到重複</span>
+<span style="margin-left:auto;font:400 11.5px 'Noto Sans TC',sans-serif;color:#c3caae">賓客名單_0530.xlsx · 128 筆</span>
+</div>
+<div style="padding:20px 22px">
+<div style="display:flex;align-items:flex-start;gap:11px;background:#fdf6e6;border:1px solid #ecd9a0;border-radius:12px;padding:12px 14px">
+<span style="width:22px;height:22px;border-radius:50%;background:#e0b23e;color:#fff;font:700 13px sans-serif;display:flex;align-items:center;justify-content:center;flex:none">!</span>
+<div><div style="font:600 12.5px 'Noto Serif TC',serif;color:#7a6a2e">這份名單先前已匯入過（05/28 · 128 筆）</div><div style="margin-top:3px;font:400 11.5px/1.5 'Noto Sans TC',sans-serif;color:#8a7a3e">系統以「姓名＋電話」比對，找到 122 筆重複、其中 5 筆資料有異動，另有 6 筆為新賓客。請選擇處理方式。</div></div>
+</div>
+<div style="margin-top:16px;display:flex;gap:10px">
+<div style="flex:1;border:2px solid #495232;border-radius:12px;padding:12px;background:#fff;position:relative"><span style="position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:50%;background:#495232;display:flex;align-items:center;justify-content:center"><span style="width:7px;height:7px;border-radius:50%;background:#fff"></span></span><div style="font:600 12.5px 'Noto Serif TC',serif;color:#2c3326">只更新有異動 + 新增</div><div style="margin-top:4px;font:400 10.5px/1.5 'Noto Sans TC',sans-serif;color:#8a9270">推薦 · 保留報到紀錄</div></div>
+<div style="flex:1;border:1px solid rgba(73,82,50,.2);border-radius:12px;padding:12px;background:#fff"><span style="width:18px;height:18px;border-radius:50%;border:2px solid #b9bfa6;display:block;margin-bottom:6px"></span><div style="font:500 12.5px 'Noto Serif TC',serif;color:#2c3326">略過重複</div><div style="margin-top:4px;font:400 10.5px/1.5 'Noto Sans TC',sans-serif;color:#8a9270">只新增未存在者</div></div>
+<div style="flex:1;border:1px solid rgba(73,82,50,.2);border-radius:12px;padding:12px;background:#fff"><span style="width:18px;height:18px;border-radius:50%;border:2px solid #b9bfa6;display:block;margin-bottom:6px"></span><div style="font:500 12.5px 'Noto Serif TC',serif;color:#2c3326">以新檔覆蓋</div><div style="margin-top:4px;font:400 10.5px/1.5 'Noto Sans TC',sans-serif;color:#c96a5c">清除既有報到狀態</div></div>
+</div>
+<div style="margin-top:16px;border:1px solid rgba(73,82,50,.14);border-radius:12px;overflow:hidden">
+<div style="display:grid;grid-template-columns:1.1fr 1fr 1.6fr 1fr;background:#eceadf;font:600 11px 'Noto Sans TC',sans-serif;color:#495232"><span style="padding:9px 10px">姓名</span><span style="padding:9px 10px">桌次</span><span style="padding:9px 10px">異動</span><span style="padding:9px 10px">處理</span></div>
+<div style="display:grid;grid-template-columns:1.1fr 1fr 1.6fr 1fr;font:400 12px 'Noto Sans TC',sans-serif;color:#2c3326;border-top:1px solid rgba(73,82,50,.1);background:#fdf6e6"><span style="padding:10px 10px">陳建豪</span><span style="padding:10px 10px">富貴 12</span><span style="padding:10px 10px;color:#c99a2e">桌次 如意8 → 富貴12</span><span style="padding:10px 10px;color:#495232">更新</span></div>
+<div style="display:grid;grid-template-columns:1.1fr 1fr 1.6fr 1fr;font:400 12px 'Noto Sans TC',sans-serif;color:#2c3326;border-top:1px solid rgba(73,82,50,.1);background:#fdf6e6"><span style="padding:10px 10px">李美惠</span><span style="padding:10px 10px">VIP 1</span><span style="padding:10px 10px;color:#c99a2e">人數 1 → 2</span><span style="padding:10px 10px;color:#495232">更新</span></div>
+<div style="display:grid;grid-template-columns:1.1fr 1fr 1.6fr 1fr;font:400 12px 'Noto Sans TC',sans-serif;color:#2c3326;border-top:1px solid rgba(73,82,50,.1);background:#fff"><span style="padding:10px 10px">王品均</span><span style="padding:10px 10px">富貴 12</span><span style="padding:10px 10px;color:#8a9270">無異動</span><span style="padding:10px 10px;color:#8a9270">略過</span></div>
+<div style="display:grid;grid-template-columns:1.1fr 1fr 1.6fr 1fr;font:400 12px 'Noto Sans TC',sans-serif;color:#2c3326;border-top:1px solid rgba(73,82,50,.1);background:#f2f7ee"><span style="padding:10px 10px">林佳蓉</span><span style="padding:10px 10px">喜樂 9</span><span style="padding:10px 10px;color:#7d8a5c">新賓客</span><span style="padding:10px 10px;color:#7d8a5c">新增</span></div>
+</div>
+<div style="margin-top:16px;display:flex;align-items:center;gap:10px">
+<span style="font:400 12px 'Noto Sans TC',sans-serif;color:#6b7360">將更新 <b style="color:#495232">5</b> 筆 · 新增 <b style="color:#7d8a5c">6</b> 筆 · 略過 <b style="color:#8a9270">117</b> 筆</span>
+<div style="margin-left:auto;display:flex;gap:10px"><button style="height:42px;padding:0 20px;border:1px solid rgba(73,82,50,.3);border-radius:11px;background:#fff;color:#495232;font:500 13px 'Noto Sans TC',sans-serif">取消</button><button style="height:42px;padding:0 22px;border:none;border-radius:11px;background:#495232;color:#FFF9F1;font:600 13px 'Noto Sans TC',sans-serif">套用（更新 5 · 新增 6）→</button></div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">下一步可說：「<a class="dv-oid" href="#4a">4a</a> 每個版型加即時大預覽」 · 「<a class="dv-oid" href="#4b">4b</a> 覆蓋前的二次確認警告」 · 「後台整套做成可點擊互動原型」</p>
+</section>
+
+<!-- ================= TURN 3 — ADMIN SCREENS ================= -->
+<section class="dv-turn" id="opt3">
+<div class="dv-thd"><a class="dv-tid" href="#opt3">第三輪 · 後台</a><span class="dv-tname">Excel 匯入 Preview · 卡片設定</span><span class="dv-tsub">賓客清單見 <a class="dv-oid" href="#2d">2d</a>；此輪補後台桌機寬版作業畫面</span></div>
+<div class="dv-opts">
+
+<!-- 3a excel import preview -->
+<div class="dv-opt" id="3a">
+<div class="dv-olabel"><a class="dv-oid" href="#3a">3a</a><b>Excel 匯入 · 預覽確認</b>桌機寬版</div>
+<div style="width:680px;background:#FFF9F1;border:1px solid rgba(73,82,50,.16);border-radius:18px;overflow:hidden;box-shadow:0 22px 50px -22px rgba(44,51,38,.4)">
+<div style="background:#495232;padding:16px 22px;display:flex;align-items:center;gap:12px">
+<span style="font:400 20px 'Pinyon Script',cursive;color:#FFF9F1">Happy Crystal</span>
+<span style="width:1px;height:18px;background:rgba(255,249,241,.3)"></span>
+<span style="font:600 14px 'Noto Serif TC',serif;color:#FFF9F1">匯入賓客名單</span>
+<span style="font:600 9px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:3px 8px;border-radius:8px">Preview</span>
+<span style="margin-left:auto;font:400 11.5px 'Noto Sans TC',sans-serif;color:#c3caae">品均＆凱文｜午宴</span>
+</div>
+<div style="padding:20px 22px">
+<div style="display:flex;align-items:center;gap:16px">
+<div style="display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;border-radius:50%;background:#7d8a5c;color:#fff;font:600 11px sans-serif;display:flex;align-items:center;justify-content:center">✓</span><span style="font:500 12px 'Noto Sans TC',sans-serif;color:#6b7360">上傳</span></div>
+<span style="flex:none;width:26px;height:1px;background:rgba(73,82,50,.25)"></span>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;border-radius:50%;background:#7d8a5c;color:#fff;font:600 11px sans-serif;display:flex;align-items:center;justify-content:center">✓</span><span style="font:500 12px 'Noto Sans TC',sans-serif;color:#6b7360">對應欄位</span></div>
+<span style="flex:none;width:26px;height:1px;background:rgba(73,82,50,.25)"></span>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:22px;height:22px;border-radius:50%;background:#495232;color:#fff;font:600 11px sans-serif;display:flex;align-items:center;justify-content:center">3</span><span style="font:600 12px 'Noto Sans TC',sans-serif;color:#2c3326">預覽確認</span></div>
+<div style="margin-left:auto;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(73,82,50,.16);border-radius:10px;padding:7px 12px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#495232" stroke-width="1.8"><path d="M14 3v4h4M14 3l5 5v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/></svg><span style="font:500 12px 'Noto Sans TC',sans-serif;color:#2c3326">賓客名單_0530.xlsx</span><span style="font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">128 筆</span></div>
+</div>
+<div style="margin-top:16px;border:1px solid rgba(73,82,50,.14);border-radius:12px;overflow:hidden">
+<div style="display:grid;grid-template-columns:26px 1.3fr 1fr .8fr 1fr 1.4fr;background:#eceadf;font:600 11px 'Noto Sans TC',sans-serif;color:#495232">
+<span style="padding:9px 8px"></span><span style="padding:9px 8px">姓名</span><span style="padding:9px 8px">桌次</span><span style="padding:9px 8px">人數</span><span style="padding:9px 8px">分組</span><span style="padding:9px 8px">狀態</span>
+</div>
+<div style="display:grid;grid-template-columns:26px 1.3fr 1fr .8fr 1fr 1.4fr;font:400 12px 'Noto Sans TC',sans-serif;color:#2c3326;border-top:1px solid rgba(73,82,50,.1);background:#fff"><span style="padding:10px 8px;color:#7d8a5c">✓</span><span style="padding:10px 8px">王品均</span><span style="padding:10px 8px">富貴 12</span><span style="padding:10px 8px">4</span><span style="padding:10px 8px">王家</span><span style="padding:10px 8px;color:#7d8a5c">可匯入</span></div>
+<div style="display:grid;grid-template-columns:26px 1.3fr 1fr .8fr 1fr 1.4fr;font:400 12px 'Noto Sans TC',sans-serif;color:#2c3326;border-top:1px solid rgba(73,82,50,.1);background:#fff"><span style="padding:10px 8px;color:#7d8a5c">✓</span><span style="padding:10px 8px">李美惠</span><span style="padding:10px 8px">VIP 1</span><span style="padding:10px 8px">1</span><span style="padding:10px 8px">公司</span><span style="padding:10px 8px;color:#7d8a5c">可匯入</span></div>
+<div style="display:grid;grid-template-columns:26px 1.3fr 1fr .8fr 1fr 1.4fr;font:400 12px 'Noto Sans TC',sans-serif;color:#2c3326;border-top:1px solid rgba(73,82,50,.1);background:#fdf6e6"><span style="padding:10px 8px;color:#e0b23e">!</span><span style="padding:10px 8px">陳建豪</span><span style="padding:10px 8px;color:#c99a2e">— 缺桌次</span><span style="padding:10px 8px">2</span><span style="padding:10px 8px">王家</span><span style="padding:10px 8px;color:#c99a2e">需補桌次</span></div>
+<div style="display:grid;grid-template-columns:26px 1.3fr 1fr .8fr 1fr 1.4fr;font:400 12px 'Noto Sans TC',sans-serif;color:#2c3326;border-top:1px solid rgba(73,82,50,.1);background:#faeeee"><span style="padding:10px 8px;color:#c96a5c">⧗</span><span style="padding:10px 8px">王品均</span><span style="padding:10px 8px">富貴 12</span><span style="padding:10px 8px">4</span><span style="padding:10px 8px">王家</span><span style="padding:10px 8px;color:#c96a5c">疑似重複</span></div>
+<div style="display:grid;grid-template-columns:26px 1.3fr 1fr .8fr 1fr 1.4fr;font:400 12px 'Noto Sans TC',sans-serif;color:#8a9270;border-top:1px solid rgba(73,82,50,.1);background:#fff"><span style="padding:10px 8px"></span><span style="padding:10px 8px">…其餘 124 筆</span><span style="padding:10px 8px"></span><span style="padding:10px 8px"></span><span style="padding:10px 8px"></span><span style="padding:10px 8px"></span></div>
+</div>
+<div style="margin-top:16px;display:flex;align-items:center;gap:10px">
+<span style="display:flex;align-items:center;gap:6px;font:400 12px 'Noto Sans TC',sans-serif;color:#6b7360"><span style="width:8px;height:8px;border-radius:50%;background:#7d8a5c"></span>124 筆可匯入</span>
+<span style="display:flex;align-items:center;gap:6px;font:400 12px 'Noto Sans TC',sans-serif;color:#6b7360"><span style="width:8px;height:8px;border-radius:50%;background:#e0b23e"></span>3 筆需修正</span>
+<span style="display:flex;align-items:center;gap:6px;font:400 12px 'Noto Sans TC',sans-serif;color:#6b7360"><span style="width:8px;height:8px;border-radius:50%;background:#c96a5c"></span>1 筆重複</span>
+<div style="margin-left:auto;display:flex;gap:10px"><button style="height:42px;padding:0 20px;border:1px solid rgba(73,82,50,.3);border-radius:11px;background:#fff;color:#495232;font:500 13px 'Noto Sans TC',sans-serif">下載錯誤清單</button><button style="height:42px;padding:0 22px;border:none;border-radius:11px;background:#495232;color:#FFF9F1;font:600 13px 'Noto Sans TC',sans-serif">確認匯入 124 筆 →</button></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 3b card settings -->
+<div class="dv-opt" id="3b">
+<div class="dv-olabel"><a class="dv-oid" href="#3b">3b</a><b>卡片設定 · 即時預覽</b>設定＝賓客喜帖長相與功能開關</div>
+<div style="width:720px;background:#FFF9F1;border:1px solid rgba(73,82,50,.16);border-radius:18px;overflow:hidden;box-shadow:0 22px 50px -22px rgba(44,51,38,.4)">
+<div style="background:#495232;padding:16px 22px;display:flex;align-items:center;gap:12px">
+<span style="font:400 20px 'Pinyon Script',cursive;color:#FFF9F1">Happy Crystal</span>
+<span style="width:1px;height:18px;background:rgba(255,249,241,.3)"></span>
+<span style="font:600 14px 'Noto Serif TC',serif;color:#FFF9F1">喜帖卡片設定</span>
+<span style="margin-left:auto;font:400 11.5px 'Noto Sans TC',sans-serif;color:#c3caae">修改後賓客端即時更新</span>
+</div>
+<div style="display:flex">
+<!-- settings form -->
+<div style="flex:1.35;padding:20px 22px;display:flex;flex-direction:column;gap:18px;border-right:1px solid rgba(73,82,50,.12)">
+<div>
+<div style="font:600 12px 'Noto Serif TC',serif;color:#2c3326">封面樣式 <span style="font-weight:400;font-size:10.5px;color:#8a9270">— 賓客開啟喜帖的首頁版型</span></div>
+<div style="margin-top:9px;display:flex;gap:9px">
+<div style="flex:1;height:64px;border-radius:10px;border:2px solid #495232;background:linear-gradient(160deg,#c9cfb4,#aab493);display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px"><span style="font:500 9.5px 'Noto Sans TC',sans-serif;color:#2c3326;background:#FFF9F1;padding:2px 7px;border-radius:8px">拱形植物</span></div>
+<div style="flex:1;height:64px;border-radius:10px;border:1px solid rgba(73,82,50,.2);background:#495232;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px"><span style="font:500 9.5px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:2px 7px;border-radius:8px">沉浸深綠</span></div>
+<div style="flex:1;height:64px;border-radius:10px;border:1px solid rgba(73,82,50,.2);background:#FFF9F1;display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px"><span style="font:500 9.5px 'Noto Sans TC',sans-serif;color:#495232;border:1px solid rgba(73,82,50,.25);padding:2px 7px;border-radius:8px">極簡編輯</span></div>
+</div>
+</div>
+<div>
+<div style="font:600 12px 'Noto Serif TC',serif;color:#2c3326">主題色 <span style="font-weight:400;font-size:10.5px;color:#8a9270">— 套用到按鈕、標題、報到頁</span></div>
+<div style="margin-top:9px;display:flex;gap:9px">
+<span style="width:26px;height:26px;border-radius:50%;background:#495232;box-shadow:0 0 0 2px #FFF9F1,0 0 0 3.5px #495232"></span>
+<span style="width:26px;height:26px;border-radius:50%;background:#7a5c46"></span>
+<span style="width:26px;height:26px;border-radius:50%;background:#3d4d5c"></span>
+<span style="width:26px;height:26px;border-radius:50%;background:#8a3f47"></span>
+</div>
+</div>
+<div style="display:flex;gap:12px">
+<div style="flex:1"><div style="font:600 12px 'Noto Serif TC',serif;color:#2c3326">新人姓名</div><div style="margin-top:8px;display:flex;gap:8px"><span style="flex:1;font:400 12.5px 'Noto Sans TC',sans-serif;color:#2c3326;background:#fff;border:1px solid rgba(73,82,50,.2);border-radius:9px;padding:9px 11px">品均</span><span style="flex:1;font:400 12.5px 'Noto Sans TC',sans-serif;color:#2c3326;background:#fff;border:1px solid rgba(73,82,50,.2);border-radius:9px;padding:9px 11px">凱文</span></div></div>
+</div>
+<div style="display:flex;gap:12px">
+<div style="flex:1.2"><div style="font:600 12px 'Noto Serif TC',serif;color:#2c3326">日期時間</div><div style="margin-top:8px;font:400 12.5px 'Noto Sans TC',sans-serif;color:#2c3326;background:#fff;border:1px solid rgba(73,82,50,.2);border-radius:9px;padding:9px 11px">2026.05.30 週六 午宴</div></div>
+<div style="flex:1"><div style="font:600 12px 'Noto Serif TC',serif;color:#2c3326">會場</div><div style="margin-top:8px;font:400 12.5px 'Noto Sans TC',sans-serif;color:#2c3326;background:#fff;border:1px solid rgba(73,82,50,.2);border-radius:9px;padding:9px 11px">萊特薇庭</div></div>
+</div>
+<div>
+<div style="font:600 12px 'Noto Serif TC',serif;color:#2c3326">顯示模組 <span style="font-weight:400;font-size:10.5px;color:#8a9270">— 決定選單裡出現哪些功能</span></div>
+<div style="margin-top:9px;display:flex;flex-direction:column;gap:7px">
+<div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(73,82,50,.14);border-radius:10px;padding:8px 12px"><span style="font:500 12.5px 'Noto Sans TC',sans-serif;color:#2c3326;flex:1">報到 QR</span><span style="width:36px;height:20px;border-radius:11px;background:#495232;position:relative"><span style="position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;background:#fff"></span></span></div>
+<div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(73,82,50,.14);border-radius:10px;padding:8px 12px"><span style="font:500 12.5px 'Noto Sans TC',sans-serif;color:#2c3326;flex:1">喜餅款式與盒數</span><span style="width:36px;height:20px;border-radius:11px;background:#495232;position:relative"><span style="position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;background:#fff"></span></span></div>
+<div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(73,82,50,.14);border-radius:10px;padding:8px 12px"><span style="font:500 12.5px 'Noto Sans TC',sans-serif;color:#2c3326;flex:1">桌位指引</span><span style="width:36px;height:20px;border-radius:11px;background:#495232;position:relative"><span style="position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;background:#fff"></span></span></div>
+<div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(73,82,50,.14);border-radius:10px;padding:8px 12px"><span style="font:500 12.5px 'Noto Sans TC',sans-serif;color:#8a9270;flex:1">RSVP 線上回覆</span><span style="width:36px;height:20px;border-radius:11px;background:#cfd3c0;position:relative"><span style="position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff"></span></span></div>
+</div>
+</div>
+</div>
+<!-- live preview -->
+<div style="flex:1;background:#eceadf;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px">
+<div style="font:400 10px 'Forum',serif;letter-spacing:.24em;color:#8a9270;text-indent:.24em">LIVE PREVIEW</div>
+<div style="width:172px;height:352px;background:#14170f;border-radius:26px;padding:6px;box-shadow:0 16px 36px -14px rgba(44,51,38,.5)">
+<div style="width:100%;height:100%;border-radius:21px;overflow:hidden;background:linear-gradient(160deg,#c9cfb4,#aab493);position:relative;display:flex;flex-direction:column;align-items:center;padding:22px 16px 14px">
+<div style="font:400 8px 'Forum',serif;letter-spacing:.34em;color:#4a5334">THE WEDDING OF</div>
+<div style="margin-top:16px;width:96px;height:120px;border-radius:48px 48px 0 0;background:rgba(255,249,241,.32);border:1px solid rgba(255,249,241,.6)"></div>
+<div style="margin-top:14px;font:400 26px/1 'Pinyon Script',cursive;color:#495232">Pinjun &amp; Kevin</div>
+<div style="margin-top:5px;font:500 9px 'Noto Serif TC',serif;letter-spacing:.2em;color:#2c3326">品均 ＆ 凱文</div>
+<div style="margin-top:8px;font:400 8px/1.7 'Noto Sans TC',sans-serif;color:#4a5334;text-align:center">2026.05.30 週六 午宴<br>萊特薇庭</div>
+<button style="margin-top:auto;width:100%;height:30px;border:none;border-radius:16px;background:#495232;color:#FFF9F1;font:500 10px 'Noto Serif TC',serif">開啟我的喜帖 →</button>
+</div>
+</div>
+<span style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#6b7360;text-align:center">賓客手機看到的即時預覽</span>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">下一步可說：「<a class="dv-oid" href="#3a">3a</a> 加欄位對應（拖曳映射）畫面」 · 「<a class="dv-oid" href="#3b">3b</a> RSVP 開啟後賓客看到的回覆表單」 · 「後台整套做成可點擊互動原型」</p>
+</section>
+
+<!-- ================= TURN 2 — OPTIMIZATIONS ================= -->
+<section class="dv-turn" id="opt2">
+<div class="dv-thd"><a class="dv-tid" href="#opt2">第二輪 · 優化</a><span class="dv-tname">貴賓端導覽 · 桌位／喜餅補強 · 賓客清單 · Kiosk 掃描流程</span><span class="dv-tsub">在既有視覺上補齊：全螢幕選單、實景照、代領通知、依桌名單、自助掃描</span></div>
+<div class="dv-opts">
+
+<!-- 2a fullscreen glass menu -->
+<div class="dv-opt" id="2a">
+<div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a><b>貴賓端 · 全螢幕選單</b>右上角開啟 · 毛玻璃</div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#495232;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cg fill='none' stroke='%23DFDFCF' stroke-width='1' opacity='0.22'%3E%3Cpath d='M75 145 C 62 110 88 92 76 55 C 70 40 78 22 75 8'/%3E%3Cpath d='M76 120 C 90 116 100 104 104 92'/%3E%3Cpath d='M75 96 C 60 92 50 80 46 68'/%3E%3C/g%3E%3C/svg%3E&quot;)">
+<div class="sb" style="color:#DFDFCF"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #DFDFCF;border-radius:2px;display:inline-block"></span></span></div>
+<!-- blurred base + glass overlay -->
+<div style="position:absolute;inset:0;padding:56px 26px 0;display:flex;flex-direction:column;align-items:center;filter:blur(1.5px);opacity:.5">
+<div style="font:400 42px/1 'Pinyon Script',cursive;color:#FFF9F1;margin-top:60px">Pinjun &amp; Kevin</div>
+<div style="margin-top:10px;font:400 13px 'Forum',serif;letter-spacing:.3em;color:#c3caae">品均 ＆ 凱文</div>
+</div>
+<div style="position:absolute;inset:0;background:rgba(20,23,15,.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:52px 22px 26px;display:flex;flex-direction:column">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<span style="font:400 14px 'Forum',serif;letter-spacing:.16em;color:#eef1e6">品均 ＆ 凱文</span>
+<span style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,249,241,.4);display:flex;align-items:center;justify-content:center;background:rgba(255,249,241,.08)"><span style="position:relative;width:15px;height:15px"><i style="position:absolute;top:6px;left:0;width:15px;height:1.6px;background:#FFF9F1;transform:rotate(45deg);display:block"></i><i style="position:absolute;top:6px;left:0;width:15px;height:1.6px;background:#FFF9F1;transform:rotate(-45deg);display:block"></i></span></span>
+</div>
+<div style="margin-top:30px;font:400 11px 'Forum',serif;letter-spacing:.34em;color:#a7b08c;text-indent:.34em">MENU</div>
+<div style="margin-top:16px;display:flex;flex-direction:column;gap:11px">
+<div style="display:flex;align-items:center;gap:14px;background:rgba(255,249,241,.14);border:1px solid rgba(255,249,241,.18);border-radius:16px;padding:15px 16px">
+<span style="width:40px;height:40px;border-radius:11px;background:rgba(255,249,241,.16);display:flex;align-items:center;justify-content:center;flex:none"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFF9F1" stroke-width="1.7"><path d="M4 11 12 4l8 7"></path><path d="M6 10v9h12v-9"></path></svg></span>
+<div style="flex:1"><div style="font:600 15px 'Noto Serif TC',serif;color:#FFF9F1">喜帖</div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#c3caae">回到喜帖頁</div></div>
+<span style="font:400 15px sans-serif;color:#a7b08c">›</span>
+</div>
+<div style="display:flex;align-items:center;gap:14px;background:rgba(255,249,241,.14);border:1px solid rgba(255,249,241,.18);border-radius:16px;padding:15px 16px">
+<span style="width:40px;height:40px;border-radius:11px;background:rgba(255,249,241,.16);display:flex;align-items:center;justify-content:center;flex:none"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFF9F1" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span>
+<div style="flex:1"><div style="font:600 15px 'Noto Serif TC',serif;color:#FFF9F1">我的報到 QR</div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#c3caae">入場・喜餅共用此碼</div></div>
+<span style="font:400 15px sans-serif;color:#a7b08c">›</span>
+</div>
+<div style="display:flex;align-items:center;gap:14px;background:rgba(255,249,241,.14);border:1px solid rgba(255,249,241,.18);border-radius:16px;padding:15px 16px">
+<span style="width:40px;height:40px;border-radius:11px;background:rgba(255,249,241,.16);display:flex;align-items:center;justify-content:center;flex:none"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFF9F1" stroke-width="1.7"><path d="M4 8h16M6 8v11a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8M8 8V6a4 4 0 0 1 8 0v2"></path></svg></span>
+<div style="flex:1"><div style="font:600 15px 'Noto Serif TC',serif;color:#FFF9F1">喜餅款式與盒數</div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#c3caae">剩餘 2 盒待領</div></div>
+<span style="font:400 15px sans-serif;color:#a7b08c">›</span>
+</div>
+<div style="display:flex;align-items:center;gap:14px;background:rgba(255,249,241,.14);border:1px solid rgba(255,249,241,.18);border-radius:16px;padding:15px 16px">
+<span style="width:40px;height:40px;border-radius:11px;background:rgba(255,249,241,.16);display:flex;align-items:center;justify-content:center;flex:none"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFF9F1" stroke-width="1.7"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span>
+<div style="flex:1"><div style="font:600 15px 'Noto Serif TC',serif;color:#FFF9F1">桌位指引</div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#c3caae">富貴 12 桌 · 近舞台</div></div>
+<span style="font:400 15px sans-serif;color:#a7b08c">›</span>
+</div>
+<div style="display:flex;align-items:center;gap:14px;background:rgba(255,249,241,.14);border:1px solid rgba(255,249,241,.18);border-radius:16px;padding:15px 16px">
+<span style="width:40px;height:40px;border-radius:11px;background:rgba(255,249,241,.16);display:flex;align-items:center;justify-content:center;flex:none"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FFF9F1" stroke-width="1.7"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg></span>
+<div style="flex:1"><div style="font:600 15px 'Noto Serif TC',serif;color:#FFF9F1">婚禮資訊・交通</div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#c3caae">流程・停車・接駁</div></div>
+<span style="font:400 15px sans-serif;color:#a7b08c">›</span>
+</div>
+</div>
+<div style="margin-top:auto;display:flex;align-items:center;justify-content:center;gap:7px;font:400 11px 'Noto Sans TC',sans-serif;color:#a7b08c"><span style="width:5px;height:5px;border-radius:50%;background:#a7b08c"></span>任何頁面右上角 ☰ 皆可開啟</div>
+</div>
+</div></div></div>
+
+<!-- 2b seating + venue photo -->
+<div class="dv-opt" id="2b">
+<div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a><b>桌位頁 · 加會場實景導引照</b></div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#FFF9F1">
+<div class="sb" style="color:#4a5334"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #4a5334;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:52px 20px 20px;display:flex;flex-direction:column;overflow:auto">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font:400 11px 'Forum',serif;letter-spacing:.3em;color:#8a9270;text-indent:.3em">YOUR TABLE</span><span style="display:flex;align-items:center;justify-content:center;color:#495232"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#495232" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span></div>
+<div style="flex:none;margin-top:12px;background:linear-gradient(160deg,#495232,#3c4429);border-radius:18px;padding:18px 20px;text-align:center;color:#FFF9F1">
+<div style="font:400 11px 'Noto Sans TC',sans-serif;color:#c3caae;letter-spacing:.2em">您的座位</div>
+<div style="margin-top:6px;font:600 34px 'Noto Serif TC',serif;letter-spacing:.06em">富貴 12 桌</div>
+<div style="margin-top:4px;font:400 11px 'Noto Sans TC',sans-serif;color:#c3caae">主桌右側 · 近舞台</div>
+</div>
+<!-- venue real photo -->
+<div style="margin-top:16px;font:500 13px 'Noto Serif TC',serif;color:#2c3326">會場實景導引</div>
+<div style="flex:none;margin-top:10px;position:relative;height:172px;border-radius:16px;overflow:hidden;border:1px solid rgba(73,82,50,.16);background:linear-gradient(150deg,#cfd4c0 0%,#aeb794 55%,#8f9a71 100%);display:flex;align-items:center;justify-content:center">
+<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:rgba(44,51,38,.55)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(44,51,38,.55)" stroke-width="1.5"><rect x="3" y="4" width="18" height="15" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="m4 18 5-4 4 3 3-2 4 3"></path></svg><span style="font:400 11px 'Noto Sans TC',sans-serif">拖入會場實景照 · 入口→座位路線</span></div>
+<!-- route overlay -->
+<div style="position:absolute;left:14px;bottom:12px;right:14px;display:flex;align-items:center;gap:8px;background:rgba(20,23,15,.55);backdrop-filter:blur(4px);border-radius:12px;padding:8px 11px">
+<span style="width:22px;height:22px;border-radius:50%;background:#FFF9F1;color:#495232;font:700 11px sans-serif;display:flex;align-items:center;justify-content:center;flex:none">↱</span>
+<span style="font:400 11px/1.4 'Noto Sans TC',sans-serif;color:#FFF9F1">進門沿紅毯直行，第 2 排右轉即可看見「富貴 12」桌牌</span>
+</div>
+</div>
+<!-- floor plan -->
+<div style="flex:none;margin-top:14px;background:#fff;border:1px solid rgba(73,82,50,.14);border-radius:14px;padding:13px 12px">
+<div style="text-align:center;font:500 11px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;border-radius:8px;padding:6px;letter-spacing:.1em">▲ 舞台 · 主桌</div>
+<div style="margin-top:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+<span style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border-radius:8px;padding:8px 4px;text-align:center">VIP 1</span>
+<span style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border-radius:8px;padding:8px 4px;text-align:center">如意 8</span>
+<span style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border-radius:8px;padding:8px 4px;text-align:center">平安 5</span>
+<span style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border-radius:8px;padding:8px 4px;text-align:center">喜樂 9</span>
+<span style="font:600 10.5px 'Noto Sans TC',sans-serif;color:#FFF9F1;background:#495232;border-radius:8px;padding:8px 4px;text-align:center;box-shadow:0 4px 10px -3px rgba(73,82,50,.5)">富貴 12<br><span style="font-weight:400;font-size:8.5px;color:#c3caae">您在這</span></span>
+<span style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border-radius:8px;padding:8px 4px;text-align:center">圓滿 3</span>
+</div>
+<div style="margin-top:8px;text-align:center;font:400 9.5px 'Noto Sans TC',sans-serif;color:#8a9270;letter-spacing:.1em">▼ 入口 · 報到區 ▼</div>
+</div>
+<button style="margin-top:14px;width:100%;height:46px;border:none;border-radius:24px;background:#495232;color:#FFF9F1;font:500 14px 'Noto Serif TC',serif;letter-spacing:.1em">放大實景導航 →</button>
+</div>
+</div></div></div>
+
+<!-- 2c cake + notify family -->
+<div class="dv-opt" id="2c">
+<div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a><b>喜餅頁 · 加「通知家人代領」</b></div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#FFF9F1">
+<div class="sb" style="color:#4a5334"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #4a5334;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:52px 20px 20px;display:flex;flex-direction:column;overflow:auto">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font:400 11px 'Forum',serif;letter-spacing:.3em;color:#8a9270;text-indent:.3em">HAPPY CAKE</span><span style="display:flex;align-items:center;justify-content:center;color:#495232"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#495232" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></span></div>
+<div style="font:600 20px 'Noto Serif TC',serif;color:#2c3326;margin-top:6px">您的喜餅</div>
+<div style="margin-top:14px;background:#495232;border-radius:16px;padding:16px;color:#FFF9F1">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:400 12.5px 'Noto Sans TC',sans-serif;color:#c3caae">王家（一行 4 位）配額</span><span style="font:600 15px 'Noto Serif TC',serif">4 盒</span></div>
+<div style="margin-top:11px;height:8px;border-radius:5px;background:rgba(255,249,241,.22);overflow:hidden"><div style="width:50%;height:100%;background:#DFDFCF;border-radius:5px"></div></div>
+<div style="margin-top:8px;font:400 12px 'Noto Sans TC',sans-serif;color:#c3caae">已領 2 盒 · 剩餘 <span style="color:#FFF9F1;font-weight:600">2 盒</span></div>
+</div>
+<div style="margin-top:16px;display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px 'Noto Serif TC',serif;color:#2c3326">款式領取狀態</span><span style="font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">綠勾＝已領 · 圈＝待領</span></div>
+<div style="margin-top:10px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;gap:12px;align-items:center;background:#f2f0e6;border:1px solid rgba(73,82,50,.12);border-radius:14px;padding:10px;opacity:.72">
+<span style="width:46px;height:46px;border-radius:10px;background:linear-gradient(150deg,#DFDFCF,#b7c09c);flex:none;position:relative"><span style="position:absolute;inset:0;background:rgba(73,82,50,.35);border-radius:10px;display:flex;align-items:center;justify-content:center"><span style="width:13px;height:7px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg);margin-top:-3px"></span></span></span>
+<div><div style="font:500 14px 'Noto Serif TC',serif;color:#2c3326;text-decoration:line-through;text-decoration-color:#b9bfa6">鳳梨酥經典禮盒 ×2</div><div style="font:400 11.5px 'Noto Sans TC',sans-serif;color:#8a9270">8 入 · 純手工</div></div>
+<span style="margin-left:auto;font:600 11px 'Noto Sans TC',sans-serif;color:#fff;background:#7d8a5c;padding:4px 10px;border-radius:12px">已領</span>
+</div>
+<div style="display:flex;gap:12px;align-items:center;background:#fff;border:1.5px solid #495232;border-radius:14px;padding:10px">
+<span style="width:46px;height:46px;border-radius:10px;background:linear-gradient(150deg,#e3c9c0,#c99e91);flex:none;display:flex;align-items:center;justify-content:center"><span style="width:16px;height:16px;border-radius:50%;border:2px solid #fff"></span></span>
+<div><div style="font:500 14px 'Noto Serif TC',serif;color:#2c3326">蔓越莓手工餅 ×2</div><div style="font:400 11.5px 'Noto Sans TC',sans-serif;color:#8a9270">10 入 · 微酸甜</div></div>
+<span style="margin-left:auto;font:600 11px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:4px 10px;border-radius:12px">待領取</span>
+</div>
+</div>
+<div style="margin-top:14px;display:flex;gap:8px;align-items:flex-start;background:#f3f0e6;border-radius:12px;padding:11px 13px">
+<span style="width:18px;height:18px;border-radius:50%;border:1.5px solid #8a9270;color:#8a9270;font:600 11px sans-serif;display:flex;align-items:center;justify-content:center;flex:none;margin-top:1px">i</span>
+<span style="font:400 11.5px/1.6 'Noto Sans TC',sans-serif;color:#6b7360">請於喜餅櫃檯出示同一組 QR 領取，家人看到的是同一組資料，任一成員皆可代領，領完自動鎖定。</span>
+</div>
+</div>
+</div></div></div>
+
+<!-- 2d guest list by table -->
+<div class="dv-opt" id="2d">
+<div class="dv-olabel"><a class="dv-oid" href="#2d">2d</a><b>賓客管理清單 · 依桌分組</b>後台手機版</div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#f3f1e8">
+<div class="sb" style="color:#2c3326"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #2c3326;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:50px 0 20px;display:flex;flex-direction:column">
+<div style="padding:0 16px;display:flex;justify-content:space-between;align-items:center"><span style="font:600 17px 'Noto Serif TC',serif;color:#2c3326">賓客管理</span><span style="font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">155 / 250 已到</span></div>
+<div style="padding:10px 16px 0;display:flex;gap:8px">
+<div style="flex:1;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(73,82,50,.16);border-radius:11px;padding:8px 11px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8a9270" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3" stroke-linecap="round"></path></svg><span style="font:400 12px 'Noto Sans TC',sans-serif;color:#a7b08c">搜尋姓名 / 桌次</span></div>
+<span style="display:flex;align-items:center;font:500 12px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;border-radius:11px;padding:0 13px">依桌 ▾</span>
+</div>
+<div style="flex:1;overflow:auto;padding:14px 16px 0;display:flex;flex-direction:column;gap:14px">
+<!-- group VIP1 -->
+<div>
+<div style="display:flex;align-items:center;gap:9px;margin-bottom:8px"><span style="font:600 13.5px 'Noto Serif TC',serif;color:#2c3326">VIP 1 桌</span><span style="font:500 10px 'Noto Sans TC',sans-serif;color:#FFF9F1;background:#7d8a5c;padding:2px 8px;border-radius:9px">9/10 到</span><span style="flex:1;height:1px;background:rgba(73,82,50,.12)"></span></div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(73,82,50,.1);border-radius:11px;padding:9px 12px"><span style="width:30px;height:30px;border-radius:50%;background:#e3c9c0;flex:none"></span><div style="flex:1"><div style="font:500 13px 'Noto Serif TC',serif;color:#2c3326">王大明 <span style="font-weight:400;color:#c99e91;font-size:10.5px">總經理·VIP</span></div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#8a9270">一行 2 位</div></div><span style="font:600 10.5px 'Noto Sans TC',sans-serif;color:#7d8a5c">✓ 已到</span></div>
+<div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(73,82,50,.1);border-radius:11px;padding:9px 12px"><span style="width:30px;height:30px;border-radius:50%;background:#DFDFCF;flex:none"></span><div style="flex:1"><div style="font:500 13px 'Noto Serif TC',serif;color:#2c3326">李美惠</div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#8a9270">一行 1 位 · 素食</div></div><span style="font:600 10.5px 'Noto Sans TC',sans-serif;color:#7d8a5c">✓ 已到</span></div>
+</div>
+</div>
+<!-- group 富貴12 -->
+<div>
+<div style="display:flex;align-items:center;gap:9px;margin-bottom:8px"><span style="font:600 13.5px 'Noto Serif TC',serif;color:#2c3326">富貴 12 桌</span><span style="font:500 10px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:2px 8px;border-radius:9px">4/10 到</span><span style="flex:1;height:1px;background:rgba(73,82,50,.12)"></span></div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(73,82,50,.1);border-radius:11px;padding:9px 12px"><span style="width:30px;height:30px;border-radius:50%;background:#DFDFCF;flex:none"></span><div style="flex:1"><div style="font:500 13px 'Noto Serif TC',serif;color:#2c3326">王品均 <span style="font-weight:400;color:#8a9270;font-size:10.5px">一行 4 位</span></div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#8a9270">3 位已到 · 1 位未到</div></div><span style="font:600 10.5px 'Noto Sans TC',sans-serif;color:#7d8a5c">3/4</span></div>
+<div style="display:flex;align-items:center;gap:10px;background:#f4f2e9;border:1px solid rgba(73,82,50,.1);border-radius:11px;padding:9px 12px;opacity:.85"><span style="width:30px;height:30px;border-radius:50%;background:#cfd3c0;flex:none"></span><div style="flex:1"><div style="font:500 13px 'Noto Serif TC',serif;color:#6b7360">陳建豪</div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#a7b08c">一行 2 位 · 未報到</div></div><span style="font:500 11px 'Noto Sans TC',sans-serif;color:#FFF9F1;background:#495232;padding:5px 12px;border-radius:16px">代報到</span></div>
+</div>
+</div>
+</div>
+</div>
+</div></div></div>
+
+</div>
+<div style="margin-top:26px;margin-bottom:8px;font:500 12px 'Forum',serif;letter-spacing:.24em;color:#8a9270">iPad KIOSK · 掃碼自助報到流程</div>
+<div class="dv-opts">
+
+<!-- 2e kiosk idle -->
+<div class="dv-opt" id="2e">
+<div class="dv-olabel"><a class="dv-oid" href="#2e">2e</a><b>① 待機 · 出示 QR 掃描</b>實體喜帖或手機皆可</div>
+<div style="position:relative;width:560px;height:412px;background:#14170f;border-radius:26px;padding:12px;box-shadow:0 24px 56px -20px rgba(44,51,38,.55)">
+<div style="position:relative;width:100%;height:100%;border-radius:16px;overflow:hidden;background:#495232;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cg fill='none' stroke='%23FFF9F1' stroke-width='1' opacity='0.28'%3E%3Cpath d='M75 145 C 62 110 88 92 76 55 C 70 40 78 22 75 8'/%3E%3Cpath d='M76 120 C 90 116 100 104 104 92'/%3E%3C/g%3E%3C/svg%3E&quot;);display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;padding:12px 20px;z-index:5"><span style="display:flex;align-items:center;gap:7px;font:400 10.5px 'Noto Sans TC',sans-serif;color:#c3caae"><span style="width:6px;height:6px;border-radius:50%;background:#9fce7f;box-shadow:0 0 6px #9fce7f"></span>引導使用模式 · 螢幕常亮</span><span style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#c3caae">Happy Crystal</span></div>
+<div style="flex:1;display:flex;align-items:center;justify-content:center;gap:40px;padding:0 40px">
+<div style="max-width:220px"><div style="font:400 11px 'Forum',serif;letter-spacing:.32em;color:#c3caae;text-indent:.32em">WELCOME</div><div style="margin-top:12px;font:400 40px/1 'Pinyon Script',cursive;color:#FFF9F1">Pinjun &amp; Kevin</div><div style="margin-top:12px;font:400 14px/1.7 'Noto Sans TC',sans-serif;color:#d7dcc6">請將喜帖或手機上的<br>報到 QR Code 對準右方</div><div style="margin-top:12px;font:400 11px 'Noto Sans TC',sans-serif;color:#a7b08c">個人賓客掃描後直接完成報到</div></div>
+<div style="width:186px;height:186px;border-radius:22px;background:rgba(20,23,15,.35);border:1px solid rgba(255,249,241,.2);position:relative;display:flex;align-items:center;justify-content:center">
+<div style="position:relative;width:130px;height:130px">
+<span style="position:absolute;top:0;left:0;width:32px;height:32px;border-top:3px solid #FFF9F1;border-left:3px solid #FFF9F1;border-radius:8px 0 0 0"></span>
+<span style="position:absolute;top:0;right:0;width:32px;height:32px;border-top:3px solid #FFF9F1;border-right:3px solid #FFF9F1;border-radius:0 8px 0 0"></span>
+<span style="position:absolute;bottom:0;left:0;width:32px;height:32px;border-bottom:3px solid #FFF9F1;border-left:3px solid #FFF9F1;border-radius:0 0 0 8px"></span>
+<span style="position:absolute;bottom:0;right:0;width:32px;height:32px;border-bottom:3px solid #FFF9F1;border-right:3px solid #FFF9F1;border-radius:0 0 8px 0"></span>
+<div style="position:absolute;top:50%;left:6px;right:6px;height:2px;background:#9fce7f;box-shadow:0 0 10px #9fce7f"></div>
+</div>
+</div>
+</div>
+<div style="text-align:center;padding:0 0 18px;font:400 10.5px 'Noto Sans TC',sans-serif;color:#a7b08c">需協助嗎？請洽現場工作人員</div>
+</div>
+</div>
+</div>
+
+<!-- 2f kiosk companion select -->
+<div class="dv-opt" id="2f">
+<div class="dv-olabel"><a class="dv-oid" href="#2f">2f</a><b>② 攜伴 · 勾選誰到了</b>同組可續掃下一位</div>
+<div style="position:relative;width:560px;height:412px;background:#14170f;border-radius:26px;padding:12px;box-shadow:0 24px 56px -20px rgba(44,51,38,.55)">
+<div style="position:relative;width:100%;height:100%;border-radius:16px;overflow:hidden;background:#f3f1e8;display:flex;flex-direction:column;padding:22px 30px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><div><div style="font:400 10.5px 'Forum',serif;letter-spacing:.3em;color:#8a9270">CHECK-IN</div><div style="margin-top:5px;font:600 22px 'Noto Serif TC',serif;color:#2c3326">王家・一行 4 位</div></div><span style="font:500 12px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:6px 13px;border-radius:14px">富貴 12 桌</span></div>
+<div style="margin-top:4px;font:400 12px 'Noto Sans TC',sans-serif;color:#8a9270">請點選實際到場的成員（預設全到）</div>
+<div style="margin-top:14px;flex:1;display:grid;grid-template-columns:1fr 1fr;gap:9px;align-content:start">
+<div style="display:flex;align-items:center;gap:11px;background:#fff;border:1.5px solid #495232;border-radius:13px;padding:11px 13px"><span style="width:24px;height:24px;border-radius:7px;background:#495232;display:flex;align-items:center;justify-content:center;flex:none"><span style="width:10px;height:6px;border-left:2.4px solid #fff;border-bottom:2.4px solid #fff;transform:rotate(-45deg);margin-top:-2px"></span></span><span style="font:500 14px 'Noto Serif TC',serif;color:#2c3326">王品均</span></div>
+<div style="display:flex;align-items:center;gap:11px;background:#fff;border:1.5px solid #495232;border-radius:13px;padding:11px 13px"><span style="width:24px;height:24px;border-radius:7px;background:#495232;display:flex;align-items:center;justify-content:center;flex:none"><span style="width:10px;height:6px;border-left:2.4px solid #fff;border-bottom:2.4px solid #fff;transform:rotate(-45deg);margin-top:-2px"></span></span><span style="font:500 14px 'Noto Serif TC',serif;color:#2c3326">王媽媽</span><span style="margin-left:auto;font:400 10.5px 'Noto Sans TC',sans-serif;color:#8a9270">素食</span></div>
+<div style="display:flex;align-items:center;gap:11px;background:#fff;border:1.5px solid #495232;border-radius:13px;padding:11px 13px"><span style="width:24px;height:24px;border-radius:7px;background:#495232;display:flex;align-items:center;justify-content:center;flex:none"><span style="width:10px;height:6px;border-left:2.4px solid #fff;border-bottom:2.4px solid #fff;transform:rotate(-45deg);margin-top:-2px"></span></span><span style="font:500 14px 'Noto Serif TC',serif;color:#2c3326">王小妹</span><span style="margin-left:auto;font:400 10.5px 'Noto Sans TC',sans-serif;color:#8a9270">嬰兒椅</span></div>
+<div style="display:flex;align-items:center;gap:11px;background:#f4f2e9;border:1.5px solid #d5d2c2;border-radius:13px;padding:11px 13px;opacity:.7"><span style="width:24px;height:24px;border-radius:7px;border:2px solid #b9bfa6;flex:none"></span><span style="font:500 14px 'Noto Serif TC',serif;color:#6b7360">陳阿姨</span><span style="margin-left:auto;font:400 10.5px 'Noto Sans TC',sans-serif;color:#a7b08c">未到</span></div>
+</div>
+<div style="margin-top:12px;display:flex;gap:12px;align-items:center">
+<span style="font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">同組下一位可續掃同一張 QR</span>
+<button style="margin-left:auto;height:48px;padding:0 32px;border:none;border-radius:24px;background:#495232;color:#FFF9F1;font:600 15px 'Noto Serif TC',serif;letter-spacing:.1em">確認報到 · 3 位 →</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 2g kiosk complete -->
+<div class="dv-opt" id="2g">
+<div class="dv-olabel"><a class="dv-oid" href="#2g">2g</a><b>③ 報到完成 · 自動返回</b>個人賓客直接到此</div>
+<div style="position:relative;width:560px;height:412px;background:#14170f;border-radius:26px;padding:12px;box-shadow:0 24px 56px -20px rgba(44,51,38,.55)">
+<div style="position:relative;width:100%;height:100%;border-radius:16px;overflow:hidden;background:linear-gradient(160deg,#495232,#3a4227);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 40px">
+<div style="width:96px;height:96px;border-radius:50%;background:#FFF9F1;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px -14px rgba(0,0,0,.5)"><span style="width:36px;height:20px;border-left:5px solid #495232;border-bottom:5px solid #495232;transform:rotate(-45deg);margin-top:-6px"></span></div>
+<div style="margin-top:22px;font:400 11px 'Forum',serif;letter-spacing:.34em;color:#c3caae;text-indent:.34em">CHECKED IN</div>
+<div style="margin-top:10px;font:600 30px 'Noto Serif TC',serif;color:#FFF9F1;letter-spacing:.08em">報到完成，歡迎光臨！</div>
+<div style="margin-top:14px;display:flex;gap:10px"><span style="font:500 14px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:8px 18px;border-radius:16px">富貴 12 桌</span><span style="font:500 14px 'Noto Sans TC',sans-serif;color:#FFF9F1;background:rgba(255,249,241,.16);padding:8px 18px;border-radius:16px">實到 3 位</span></div>
+<div style="margin-top:18px;font:400 13px/1.7 'Noto Sans TC',sans-serif;color:#d7dcc6">請沿紅毯直行、第 2 排右轉入座<br>喜餅請於櫃檯出示同一組 QR 領取</div>
+<div style="margin-top:20px;display:flex;align-items:center;gap:8px;font:400 11px 'Noto Sans TC',sans-serif;color:#a7b08c"><span style="width:16px;height:16px;border-radius:50%;border:2px solid #a7b08c;border-top-color:transparent;display:inline-block"></span>3 秒後自動返回待機畫面…</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">下一步可說：「<a class="dv-oid" href="#2a">2a</a> 選單改成底部抽屜式」 · 「<a class="dv-oid" href="#2f">2f</a> 加上『找不到人？手動搜尋』備援」 · 「把貴賓端整套做成可點擊互動原型」</p>
+</section>
+
+<!-- ================= GUEST HERO — 3 DIRECTIONS ================= -->
+<section class="dv-turn" id="g-hero">
+<div class="dv-thd"><a class="dv-tid" href="#g-hero">賓客 · 喜帖首頁</a><span class="dv-tname">TILT_3D 傾斜喜帖卡</span><span class="dv-tsub">CSS 3D 視差傾斜 · 手機開啟即見，非 WebGL</span></div>
+<div class="dv-opts">
+
+<!-- 1a arched botanical -->
+<div class="dv-opt" id="1a">
+<div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a><b>拱形植物・編輯感</b>參考 ref4 拱窗</div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#FFF9F1">
+<div class="sb" style="color:#4a5334"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #4a5334;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:56px 26px 24px;display:flex;flex-direction:column;align-items:center">
+<div style="font:400 13px 'Forum',serif;letter-spacing:.42em;color:#8a9270;text-indent:.42em">THE WEDDING OF</div>
+<div style="margin-top:14px;perspective:900px;">
+<div style="width:216px;height:296px;border-radius:108px 108px 0 0;background:linear-gradient(160deg,#c9cfb4,#aab493);background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cg fill='none' stroke='%23FFF9F1' stroke-width='1.1' opacity='0.6'%3E%3Cpath d='M75 145 C 62 110 88 92 76 55 C 70 40 78 22 75 8'/%3E%3Cpath d='M76 120 C 90 116 100 104 104 92'/%3E%3Cpath d='M75 96 C 60 92 50 80 46 68'/%3E%3Cpath d='M76 70 C 90 66 98 56 100 46'/%3E%3C/g%3E%3Cg fill='%23FFF9F1' opacity='0.55'%3E%3Cellipse cx='106' cy='90' rx='9' ry='4' transform='rotate(30 106 90)'/%3E%3Cellipse cx='44' cy='66' rx='9' ry='4' transform='rotate(-30 44 66)'/%3E%3Cellipse cx='102' cy='44' rx='8' ry='3.5' transform='rotate(25 102 44)'/%3E%3C/g%3E%3C/svg%3E&quot;);box-shadow:0 22px 40px -14px rgba(73,82,50,.5);transform:rotateY(-12deg) rotateX(6deg);position:relative;display:flex;align-items:flex-end;justify-content:center">
+<span style="position:absolute;top:16px;left:50%;transform:translateX(-50%);font:600 16px 'Noto Serif TC',serif;color:#FFF9F1;letter-spacing:.1em">品 ＆ 凱</span>
+<span style="margin-bottom:20px;font:400 12px 'Forum',serif;letter-spacing:.3em;color:#fff;background:rgba(73,82,50,.35);padding:5px 12px;border-radius:20px;backdrop-filter:blur(2px)">3D 傾斜卡</span>
+</div></div>
+<div style="margin-top:22px;font:400 48px/1 'Pinyon Script',cursive;color:#495232">Pinjun &amp; Kevin</div>
+<div style="margin-top:6px;font:500 15px 'Noto Serif TC',serif;letter-spacing:.34em;color:#2c3326;text-indent:.34em">品均 ＆ 凱文</div>
+<div style="margin-top:16px;width:38px;height:1px;background:#b3bb98"></div>
+<div style="margin-top:16px;font:400 13px/1.9 'Noto Sans TC',sans-serif;color:#6b7360;text-align:center">2026 · 05 · 30　週六　午宴<br>萊特薇庭 The Light Wedding</div>
+<button style="margin-top:auto;width:100%;height:48px;border:none;border-radius:26px;background:#495232;color:#FFF9F1;font:500 15px 'Noto Serif TC',serif;letter-spacing:.14em">開啟我的喜帖 →</button>
+</div>
+</div></div></div>
+
+<!-- 1b immersive dark green -->
+<div class="dv-opt" id="1b">
+<div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a><b>沉浸深綠・徽章</b>參考 ref1 花紋</div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#495232;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cg fill='none' stroke='%23DFDFCF' stroke-width='1' opacity='0.28'%3E%3Cpath d='M75 145 C 62 110 88 92 76 55 C 70 40 78 22 75 8'/%3E%3Cpath d='M76 120 C 90 116 100 104 104 92'/%3E%3Cpath d='M75 96 C 60 92 50 80 46 68'/%3E%3Cpath d='M76 70 C 90 66 98 56 100 46'/%3E%3C/g%3E%3Cg fill='%23DFDFCF' opacity='0.22'%3E%3Cellipse cx='106' cy='90' rx='9' ry='4' transform='rotate(30 106 90)'/%3E%3Cellipse cx='44' cy='66' rx='9' ry='4' transform='rotate(-30 44 66)'/%3E%3Cellipse cx='102' cy='44' rx='8' ry='3.5' transform='rotate(25 102 44)'/%3E%3C/g%3E%3C/svg%3E&quot;)">
+<div class="sb" style="color:#DFDFCF"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #DFDFCF;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:60px 28px 24px;display:flex;flex-direction:column;align-items:center;text-align:center">
+<div style="font:400 12px 'Forum',serif;letter-spacing:.4em;color:#c3caae;text-indent:.4em">誠摯邀請您蒞臨</div>
+<div style="margin:34px 0 6px;width:150px;height:150px;border-radius:50%;background:#FFF9F1;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 18px 40px -12px rgba(0,0,0,.4);border:1px solid rgba(255,249,241,.5)">
+<div style="width:126px;height:126px;border-radius:50%;border:1px solid #b3bb98;display:flex;align-items:center;justify-content:center">
+<span style="font:400 62px/.8 'Pinyon Script',cursive;color:#495232">P&amp;K</span>
+</div></div>
+<div style="margin-top:24px;font:400 15px 'Forum',serif;letter-spacing:.3em;color:#FFF9F1;text-indent:.3em">品均 ＆ 凱文</div>
+<div style="margin-top:14px;font:400 13px/1.9 'Noto Sans TC',sans-serif;color:#c3caae">2026.05.30 週六 · 午宴 12:00<br>萊特薇庭 The Light Wedding</div>
+<div style="margin-top:auto;display:flex;flex-direction:column;gap:10px;width:100%">
+<span style="font:400 11px 'Forum',serif;letter-spacing:.28em;color:#a7b08c;text-indent:.28em">傾斜手機・喜帖隨光影流動</span>
+<button style="width:100%;height:48px;border:none;border-radius:26px;background:#FFF9F1;color:#495232;font:600 15px 'Noto Serif TC',serif;letter-spacing:.12em">進入喜帖</button>
+</div>
+</div>
+</div></div></div>
+
+<!-- 1c minimal editorial -->
+<div class="dv-opt" id="1c">
+<div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a><b>極簡編輯・留白</b>大字級 Forum</div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#FFF9F1">
+<div class="sb" style="color:#4a5334"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #4a5334;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:60px 30px 24px;display:flex;flex-direction:column">
+<div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(73,82,50,.22);padding-bottom:14px">
+<span style="font:400 22px 'Pinyon Script',cursive;color:#495232">Save the Date</span>
+<span style="font:400 11px 'Forum',serif;letter-spacing:.2em;color:#8a9270">05 / 30</span>
+</div>
+<div style="margin-top:44px;font:400 76px/.92 'Forum',serif;color:#2c3326">品均<br><span style="font-size:34px;color:#8a9270">＆</span><br>凱文</div>
+<div style="margin-top:26px;width:150px;height:150px;border-radius:75px 75px 0 0;background:linear-gradient(160deg,#c9cfb4,#a7b28f);align-self:flex-end;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cg fill='none' stroke='%23FFF9F1' stroke-width='1.1' opacity='0.55'%3E%3Cpath d='M75 145 C 62 110 88 92 76 55 C 70 40 78 22 75 8'/%3E%3Cpath d='M76 120 C 90 116 100 104 104 92'/%3E%3Cpath d='M75 96 C 60 92 50 80 46 68'/%3E%3C/g%3E%3C/svg%3E&quot;);box-shadow:0 16px 30px -12px rgba(73,82,50,.45)"></div>
+<div style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+<div style="font:400 12px/1.8 'Noto Sans TC',sans-serif;color:#6b7360">2026 週六 午宴<br>萊特薇庭</div>
+<span style="font:500 13px 'Noto Serif TC',serif;color:#495232;border-bottom:1px solid #495232;padding-bottom:3px">開啟喜帖 →</span>
+</div>
+</div>
+</div></div></div>
+
+</div>
+<p class="dv-next">下一步可說：「喜帖首頁走 <a class="dv-oid" href="#1b">1b</a> 方向，但字級參考 <a class="dv-oid" href="#1c">1c</a>」 · 「<a class="dv-oid" href="#1a">1a</a> 的拱形卡加真實照片欄位」 · 「把選定方向做成可傾斜互動原型」</p>
+</section>
+
+<!-- ================= GUEST — OTHER SCREENS ================= -->
+<section class="dv-turn" id="g-more">
+<div class="dv-thd"><a class="dv-tid" href="#g-more">賓客 · 其他畫面</a><span class="dv-tname">靜態喜帖・報到 QR・喜餅・桌位</span><span class="dv-tsub">一律手機版・離線可秒開</span></div>
+<div class="dv-opts">
+
+<!-- 1d FLAT_IMAGE -->
+<div class="dv-opt" id="1d">
+<div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a><b>靜態喜帖・傾斜喜帖卡</b>資訊都在卡上</div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#FFF9F1">
+<div class="sb" style="color:#4a5334"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #fff;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;display:flex;flex-direction:column">
+<div style="height:392px;padding:34px 26px 18px;display:flex;flex-direction:column;align-items:center;perspective:1000px">
+<div style="font:400 10px 'Forum',serif;letter-spacing:.36em;color:#8a9270;text-indent:.36em">TILT · 傾斜喜帖卡</div>
+<div style="margin-top:14px;width:206px;height:286px;border-radius:20px;transform:rotateY(-13deg) rotateX(7deg);box-shadow:-16px 24px 42px -14px rgba(73,82,50,.5);background:#54603a center/cover no-repeat url(&quot;uploads/Free Wedding Card Maker - Design Wedding Invitations  Canva.jpg&quot;);position:relative;overflow:hidden">
+<div style="position:absolute;inset:0;border-radius:20px;border:1px solid rgba(255,249,241,.28);pointer-events:none"></div>
+<div style="position:absolute;top:13px;right:13px;font:400 8.5px 'Forum',serif;letter-spacing:.16em;color:rgba(255,249,241,.9);background:rgba(20,23,15,.35);padding:4px 9px;border-radius:12px;backdrop-filter:blur(2px)">3D 傾斜卡</div>
+</div>
+<div style="margin-top:16px;display:flex;align-items:center;gap:6px;font:400 10.5px 'Noto Sans TC',sans-serif;color:#a7b08c"><span style="width:5px;height:5px;border-radius:50%;background:#a7b08c"></span>傾斜手機・喜帖隨光影流動</div>
+</div>
+<div style="flex:1;padding:16px 24px 22px;display:flex;flex-direction:column;align-items:center;gap:12px">
+<div style="font:400 12.5px/1.7 'Noto Serif TC',serif;color:#6b7360;text-align:center">誠摯邀請您蒞臨我們的婚宴<br>與我們共享這份喜悅</div>
+<button style="margin-top:auto;width:100%;height:48px;border:none;border-radius:24px;background:#495232;color:#FFF9F1;font:500 14px 'Noto Serif TC',serif;letter-spacing:.1em">出示我的報到 QR →</button>
+</div>
+</div>
+</div></div></div>
+
+<!-- 1e QR -->
+<div class="dv-opt" id="1e">
+<div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a><b>我的報到 QR</b>一碼走全場</div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#495232">
+<div class="sb" style="color:#DFDFCF"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #DFDFCF;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:58px 24px 26px;display:flex;flex-direction:column;align-items:center;text-align:center">
+<div style="font:400 12px 'Forum',serif;letter-spacing:.34em;color:#c3caae;text-indent:.34em">MY CHECK-IN PASS</div>
+<div style="margin-top:4px;font:400 13px 'Noto Sans TC',sans-serif;color:#a7b08c">入場報到 · 喜餅領取 共用此碼</div>
+<div style="margin-top:22px;background:#FFF9F1;border-radius:22px;padding:20px;box-shadow:0 20px 44px -16px rgba(0,0,0,.5)">
+<div style="width:172px;height:172px;border-radius:10px;background:conic-gradient(#495232 0 25%,transparent 0 50%,#495232 0 75%,transparent 0);background-size:14px 14px;background-color:#fff;position:relative;overflow:hidden">
+<div style="position:absolute;top:12px;left:12px;width:40px;height:40px;border:7px solid #495232;border-radius:6px"></div>
+<div style="position:absolute;top:12px;right:12px;width:40px;height:40px;border:7px solid #495232;border-radius:6px"></div>
+<div style="position:absolute;bottom:12px;left:12px;width:40px;height:40px;border:7px solid #495232;border-radius:6px"></div>
+<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;background:#FFF9F1;display:flex;align-items:center;justify-content:center"><span style="font:400 20px 'Pinyon Script',cursive;color:#495232">P&amp;K</span></div>
+</div>
+</div>
+<div style="margin-top:20px;font:600 22px 'Noto Serif TC',serif;color:#FFF9F1;letter-spacing:.1em">王 品 均</div>
+<div style="margin-top:8px;display:flex;gap:8px">
+<span style="font:500 12px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:5px 12px;border-radius:14px">富貴 12 桌</span>
+<span style="font:500 12px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:5px 12px;border-radius:14px">一行 4 位</span>
+</div>
+<div style="margin-top:auto;width:100%;display:flex;flex-direction:column;gap:12px;align-items:center">
+<button style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:46px;border:none;border-radius:12px;background:#000;color:#fff;font:500 13.5px 'Noto Sans TC',sans-serif"><svg width="15" height="18" viewBox="0 0 384 512" fill="#fff"><path d="M318.7 268c-.5-52 42.4-77 44.3-78.2-24.2-35.4-61.8-40.2-75.2-40.8-32-3.3-62.4 18.8-78.6 18.8-16.2 0-41.2-18.3-67.8-17.8-34.9.5-67.1 20.3-85 51.6-36.3 62.9-9.3 155.9 26 207 17.3 25 37.9 53 65 52 26.1-1 36-16.9 67.5-16.9 31.5 0 40.4 16.9 67.8 16.4 28-.5 45.7-25.5 62.9-50.6 19.8-29 27.9-57.1 28.4-58.5-.6-.3-54.5-20.9-55-82.8zM267 117.9c14.3-17.4 24-41.5 21.3-65.5-20.6.8-45.5 13.7-60.3 31.1-13.2 15.4-24.8 40-21.7 63.5 23 1.8 46.4-11.7 60.7-29.1z"></path></svg>加入 Apple Wallet</button>
+<div style="display:flex;align-items:center;gap:7px;font:400 11.5px 'Noto Sans TC',sans-serif;color:#a7b08c"><span style="width:7px;height:7px;border-radius:50%;background:#9fce7f;box-shadow:0 0 8px #9fce7f"></span>離線已快取・無網路也能出示</div>
+</div>
+</div>
+</div></div></div>
+
+<!-- 1f cake -->
+<div class="dv-opt" id="1f">
+<div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a><b>喜餅款式與盒數</b>群組配額共用</div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#FFF9F1">
+<div class="sb" style="color:#4a5334"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #4a5334;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:56px 22px 22px;display:flex;flex-direction:column;overflow:auto">
+<div style="font:400 12px 'Forum',serif;letter-spacing:.3em;color:#8a9270;text-indent:.3em">HAPPY CAKE</div>
+<div style="font:600 21px 'Noto Serif TC',serif;color:#2c3326;margin-top:4px">您的喜餅</div>
+<div style="margin-top:6px;font:400 12.5px 'Noto Sans TC',sans-serif;color:#6b7360">王家（一行 4 位）本組共享配額</div>
+<div style="margin-top:16px;background:#495232;border-radius:18px;padding:18px;color:#FFF9F1">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:400 13px 'Noto Sans TC',sans-serif;color:#c3caae">本組配額</span><span style="font:600 15px 'Noto Serif TC',serif">4 盒</span></div>
+<div style="margin-top:12px;height:8px;border-radius:5px;background:rgba(255,249,241,.22);overflow:hidden"><div style="width:50%;height:100%;background:#DFDFCF;border-radius:5px"></div></div>
+<div style="margin-top:8px;font:400 12px 'Noto Sans TC',sans-serif;color:#c3caae">已領 2 盒 · 剩餘 <span style="color:#FFF9F1;font-weight:600">2 盒</span></div>
+</div>
+<div style="margin-top:16px;display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px 'Noto Serif TC',serif;color:#2c3326">款式領取狀態</span><span style="font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">綠勾＝已領 · 圈＝待領</span></div>
+<div style="margin-top:10px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;gap:12px;align-items:center;background:#f2f0e6;border:1px solid rgba(73,82,50,.12);border-radius:14px;padding:10px;opacity:.72">
+<span style="width:46px;height:46px;border-radius:10px;background:linear-gradient(150deg,#DFDFCF,#b7c09c);flex:none;position:relative"><span style="position:absolute;inset:0;background:rgba(73,82,50,.35);border-radius:10px;display:flex;align-items:center;justify-content:center"><span style="width:13px;height:7px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg);margin-top:-3px"></span></span></span>
+<div><div style="font:500 14px 'Noto Serif TC',serif;color:#2c3326;text-decoration:line-through;text-decoration-color:#b9bfa6">鳳梨酥經典禮盒 ×2</div><div style="font:400 11.5px 'Noto Sans TC',sans-serif;color:#8a9270">8 入 · 純手工</div></div>
+<span style="margin-left:auto;font:600 11px 'Noto Sans TC',sans-serif;color:#fff;background:#7d8a5c;padding:4px 10px;border-radius:12px">已領</span>
+</div>
+<div style="display:flex;gap:12px;align-items:center;background:#fff;border:1.5px solid #495232;border-radius:14px;padding:10px">
+<span style="width:46px;height:46px;border-radius:10px;background:linear-gradient(150deg,#e3c9c0,#c99e91);flex:none;display:flex;align-items:center;justify-content:center"><span style="width:16px;height:16px;border-radius:50%;border:2px solid #fff"></span></span>
+<div><div style="font:500 14px 'Noto Serif TC',serif;color:#2c3326">蔓越莓手工餅 ×2</div><div style="font:400 11.5px 'Noto Sans TC',sans-serif;color:#8a9270">10 入 · 微酸甜</div></div>
+<span style="margin-left:auto;font:600 11px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:4px 10px;border-radius:12px">待領取</span>
+</div>
+</div>
+<div style="margin-top:14px;display:flex;gap:8px;align-items:flex-start;background:#f3f0e6;border-radius:12px;padding:11px 13px">
+<span style="width:18px;height:18px;border-radius:50%;border:1.5px solid #8a9270;color:#8a9270;font:600 11px sans-serif;display:flex;align-items:center;justify-content:center;flex:none;margin-top:1px">i</span>
+<span style="font:400 12px/1.6 'Noto Sans TC',sans-serif;color:#6b7360">請於喜餅櫃檯出示同一組 QR 領取，任一成員皆可代領，領完自動鎖定。</span>
+</div>
+</div>
+</div></div></div>
+
+<!-- 1g seating -->
+<div class="dv-opt" id="1g">
+<div class="dv-olabel"><a class="dv-oid" href="#1g">1g</a><b>桌位指引</b>純文字・依桌分組</div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#FFF9F1">
+<div class="sb" style="color:#4a5334"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #4a5334;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:56px 22px 22px;display:flex;flex-direction:column;overflow:auto">
+<div style="font:400 12px 'Forum',serif;letter-spacing:.3em;color:#8a9270;text-indent:.3em">YOUR TABLE</div>
+<div style="flex:none;margin-top:14px;background:linear-gradient(160deg,#495232,#3c4429);border-radius:20px;padding:26px 22px;text-align:center;color:#FFF9F1;position:relative;overflow:hidden">
+<div style="position:absolute;inset:0;opacity:.16;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cg fill='none' stroke='%23FFF9F1' stroke-width='1'%3E%3Cpath d='M75 145 C 62 110 88 92 76 55 C 70 40 78 22 75 8'/%3E%3Cpath d='M76 120 C 90 116 100 104 104 92'/%3E%3C/g%3E%3C/svg%3E&quot;)"></div>
+<div style="position:relative"><div style="font:400 12px 'Noto Sans TC',sans-serif;color:#c3caae;letter-spacing:.2em">您的座位</div>
+<div style="margin-top:8px;font:600 40px 'Noto Serif TC',serif;letter-spacing:.06em">富貴 12 桌</div>
+<div style="margin-top:6px;font:400 12px 'Noto Sans TC',sans-serif;color:#c3caae">主桌右側 · 近舞台</div></div>
+</div>
+<div style="margin-top:18px;font:500 13px 'Noto Serif TC',serif;color:#2c3326">同桌賓客</div>
+<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:7px">
+<span style="font:400 12.5px 'Noto Sans TC',sans-serif;color:#495232;background:#e9e6d9;padding:6px 12px;border-radius:14px">王品均</span>
+<span style="font:400 12.5px 'Noto Sans TC',sans-serif;color:#495232;background:#e9e6d9;padding:6px 12px;border-radius:14px">王媽媽</span>
+<span style="font:400 12.5px 'Noto Sans TC',sans-serif;color:#495232;background:#e9e6d9;padding:6px 12px;border-radius:14px">王小妹</span>
+<span style="font:400 12.5px 'Noto Sans TC',sans-serif;color:#495232;background:#e9e6d9;padding:6px 12px;border-radius:14px">陳阿姨</span>
+</div>
+<div style="margin-top:16px;font:500 13px 'Noto Serif TC',serif;color:#2c3326">會場平面方位</div>
+<div style="flex:none;margin-top:10px;background:#fff;border:1px solid rgba(73,82,50,.14);border-radius:14px;padding:14px 12px">
+<div style="text-align:center;font:500 11px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;border-radius:8px;padding:7px;letter-spacing:.1em">▲ 舞台 · 主桌</div>
+<div style="margin-top:9px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px">
+<span style="font:400 11px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border:1px solid rgba(73,82,50,.1);border-radius:8px;padding:9px 4px;text-align:center">VIP 1</span>
+<span style="font:400 11px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border:1px solid rgba(73,82,50,.1);border-radius:8px;padding:9px 4px;text-align:center">如意 8</span>
+<span style="font:400 11px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border:1px solid rgba(73,82,50,.1);border-radius:8px;padding:9px 4px;text-align:center">平安 5</span>
+<span style="font:600 11px 'Noto Sans TC',sans-serif;color:#FFF9F1;background:#495232;border-radius:8px;padding:9px 4px;text-align:center;box-shadow:0 4px 10px -3px rgba(73,82,50,.5)">富貴 12<br></span>
+<span style="font:400 11px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border:1px solid rgba(73,82,50,.1);border-radius:8px;padding:9px 4px;text-align:center">喜樂 9</span>
+<span style="font:400 11px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border:1px solid rgba(73,82,50,.1);border-radius:8px;padding:9px 4px;text-align:center">圓滿 3</span>
+</div>
+<div style="margin-top:9px;text-align:center;font:400 10px 'Noto Sans TC',sans-serif;color:#8a9270;letter-spacing:.1em">▼ 入口 · 報到區 ▼</div>
+</div>
+<div style="margin-top:12px;display:flex;gap:8px">
+<span style="flex:1;font:400 11.5px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border-radius:10px;padding:9px;text-align:center">素食 <b style="color:#495232">1</b></span>
+<span style="flex:1;font:400 11.5px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border-radius:10px;padding:9px;text-align:center">嬰兒椅 <b style="color:#495232">1</b></span>
+<span style="flex:1;font:400 11.5px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f4f2e9;border-radius:10px;padding:9px;text-align:center">同行 <b style="color:#495232">4</b></span>
+</div>
+<button style="margin-top:auto;width:100%;height:46px;border:none;border-radius:24px;background:#495232;color:#FFF9F1;font:500 14px 'Noto Serif TC',serif;letter-spacing:.1em">會場位置導引 →</button>
+</div>
+</div></div></div>
+
+</div>
+<p class="dv-next">下一步可說：「桌位頁加會場實景導引照」 · 「喜餅頁加『通知家人代領』」 · 「賓客端做成可傾斜互動原型」</p>
+</section>
+
+<!-- ================= ADMIN ================= -->
+<section class="dv-turn" id="admin">
+<div class="dv-thd"><a class="dv-tid" href="#admin">婚顧 · Admin 後台</a><span class="dv-tname">場次儀表板</span><span class="dv-tsub">底部常用列（報到／喜餅／桌位圖）＋ 可伸縮側欄 · CMS/BPM 風</span></div>
+<div class="dv-opts">
+
+<!-- 1h admin dashboard -->
+<div class="dv-opt" id="1h">
+<div class="dv-olabel"><a class="dv-oid" href="#1h">1h</a><b>後台首頁 · 手機版</b></div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#f3f1e8">
+<div class="sb" style="color:#2c3326"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #2c3326;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:52px 0 68px;display:flex;flex-direction:column">
+<div style="padding:0 18px;display:flex;align-items:center;gap:10px">
+<div style="flex:1;background:#fff;border:1px solid rgba(73,82,50,.16);border-radius:12px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between">
+<div><div style="font:400 10px 'Noto Sans TC',sans-serif;color:#8a9270">目前場次</div><div style="font:600 13px 'Noto Serif TC',serif;color:#2c3326">品均＆凱文｜午宴</div></div>
+<span style="font:400 12px sans-serif;color:#495232">▾</span>
+</div>
+<span style="width:34px;height:34px;border-radius:50%;background:#DFDFCF;flex:none"></span>
+</div>
+<div style="padding:16px 18px 0;overflow:auto;flex:1">
+<div style="display:flex;gap:10px">
+<div style="flex:1.2;background:#495232;border-radius:16px;padding:15px;color:#FFF9F1">
+<div style="font:400 11px 'Noto Sans TC',sans-serif;color:#c3caae">報到率</div>
+<div style="margin-top:4px;font:600 30px 'Noto Serif TC',serif">62<span style="font-size:15px">%</span></div>
+<div style="margin-top:2px;font:400 11px 'Noto Sans TC',sans-serif;color:#c3caae">155 / 250 人</div>
+</div>
+<div style="flex:1;background:#fff;border:1px solid rgba(73,82,50,.12);border-radius:16px;padding:15px">
+<div style="font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">喜餅剩餘</div>
+<div style="margin-top:4px;font:600 30px 'Noto Serif TC',serif;color:#495232">88</div>
+<div style="margin-top:2px;font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">盒（共 200）</div>
+</div>
+</div>
+<div style="margin-top:10px;display:flex;gap:10px">
+<div style="flex:1;background:#fff;border:1px solid rgba(73,82,50,.12);border-radius:14px;padding:12px;text-align:center"><div style="font:600 22px 'Noto Serif TC',serif;color:#495232">18</div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#8a9270">素食實到</div></div>
+<div style="flex:1;background:#fff;border:1px solid rgba(73,82,50,.12);border-radius:14px;padding:12px;text-align:center"><div style="font:600 22px 'Noto Serif TC',serif;color:#495232">4</div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#8a9270">嬰兒椅</div></div>
+<div style="flex:1;background:#fff;border:1px solid rgba(73,82,50,.12);border-radius:14px;padding:12px;text-align:center"><div style="font:600 22px 'Noto Serif TC',serif;color:#495232">3/5</div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#8a9270">VIP 到</div></div>
+</div>
+<div style="margin-top:16px;display:flex;justify-content:space-between;align-items:baseline"><span style="font:500 13px 'Noto Serif TC',serif;color:#2c3326">最新報到</span><span style="display:flex;align-items:center;gap:5px;font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270"><span style="width:6px;height:6px;border-radius:50%;background:#9fce7f;box-shadow:0 0 6px #9fce7f"></span>即時</span></div>
+<div style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
+<div style="background:#fff;border:1px solid rgba(73,82,50,.1);border-radius:12px;padding:10px 13px;display:flex;align-items:center;gap:10px"><span style="width:30px;height:30px;border-radius:50%;background:#DFDFCF;flex:none"></span><div style="flex:1"><div style="font:500 13px 'Noto Serif TC',serif;color:#2c3326">王品均 <span style="font-weight:400;color:#8a9270;font-size:11px">一行 4 位</span></div><div style="font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">富貴 12 桌 · 剛剛</div></div></div>
+<div style="background:#fff;border:1px solid rgba(73,82,50,.1);border-radius:12px;padding:10px 13px;display:flex;align-items:center;gap:10px"><span style="width:30px;height:30px;border-radius:50%;background:#e3c9c0;flex:none"></span><div style="flex:1"><div style="font:500 13px 'Noto Serif TC',serif;color:#2c3326">李美惠 <span style="font-weight:400;color:#c99e91;font-size:11px">VIP</span></div><div style="font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">VIP 1 桌 · 2 分鐘前</div></div></div>
+</div>
+</div>
+<div style="position:absolute;bottom:0;left:0;right:0;height:64px;background:#fff;border-top:1px solid rgba(73,82,50,.12);display:flex;align-items:center;justify-content:space-around;padding-bottom:6px">
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><span style="width:22px;height:22px;border-radius:6px;border:2px solid #495232;display:flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;background:#495232;border-radius:2px"></span></span><span style="font:600 10px 'Noto Sans TC',sans-serif;color:#495232">報到</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><span style="width:22px;height:22px;border-radius:50%;border:2px solid #a7b08c"></span><span style="font:400 10px 'Noto Sans TC',sans-serif;color:#a7b08c">喜餅</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><span style="width:22px;height:22px;border-radius:4px;border:2px solid #a7b08c;display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:3px"><i style="background:#a7b08c;border-radius:1px"></i><i style="background:#a7b08c;border-radius:1px"></i><i style="background:#a7b08c;border-radius:1px"></i><i style="background:#a7b08c;border-radius:1px"></i></span><span style="font:400 10px 'Noto Sans TC',sans-serif;color:#a7b08c">桌位圖</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:4px"><span style="width:22px;height:22px;display:flex;flex-direction:column;justify-content:center;gap:3px"><i style="height:2px;background:#a7b08c;border-radius:2px"></i><i style="height:2px;background:#a7b08c;border-radius:2px"></i><i style="height:2px;background:#a7b08c;border-radius:2px"></i></span><span style="font:400 10px 'Noto Sans TC',sans-serif;color:#a7b08c">更多</span></div>
+</div>
+</div>
+</div></div></div>
+
+<!-- 1h2 sidebar expanded -->
+<div class="dv-opt" id="1i">
+<div class="dv-olabel"><a class="dv-oid" href="#1i">1i</a><b>側欄展開（更多功能）</b></div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#495232">
+<div class="sb" style="color:#DFDFCF"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #DFDFCF;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:52px 20px 24px;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;gap:10px"><span style="font:400 26px 'Pinyon Script',cursive;color:#FFF9F1">Happy Crystal</span></div>
+<div style="margin-top:6px;font:400 11px 'Noto Sans TC',sans-serif;color:#a7b08c">婚顧管理後台</div>
+<div style="margin-top:22px;font:400 10px 'Forum',serif;letter-spacing:.24em;color:#8a9678">現場作業</div>
+<div style="margin-top:12px;display:flex;flex-direction:column;gap:3px">
+<div style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:11px;background:#FFF9F1"><span style="width:18px;height:18px;border-radius:5px;border:2px solid #495232;display:flex;align-items:center;justify-content:center"><span style="width:6px;height:6px;background:#495232;border-radius:2px"></span></span><span style="font:600 14px 'Noto Serif TC',serif;color:#2c3326">報到管理</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:11px"><span style="width:18px;height:18px;border-radius:50%;border:2px solid #c3caae"></span><span style="font:400 14px 'Noto Serif TC',serif;color:#DFDFCF">喜餅核銷</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:11px"><span style="width:18px;height:18px;border-radius:4px;border:2px solid #c3caae"></span><span style="font:400 14px 'Noto Serif TC',serif;color:#DFDFCF">桌位圖</span></div>
+</div>
+<div style="margin-top:20px;font:400 10px 'Forum',serif;letter-spacing:.24em;color:#8a9678">名單與設定</div>
+<div style="margin-top:12px;display:flex;flex-direction:column;gap:3px">
+<div style="display:flex;align-items:center;gap:12px;padding:11px 12px"><span style="width:18px;height:18px;border:2px solid #c3caae;border-radius:4px"></span><span style="font:400 14px 'Noto Serif TC',serif;color:#DFDFCF">賓客管理</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:11px 12px"><span style="width:18px;height:18px;border:2px solid #c3caae;border-radius:4px"></span><span style="font:400 14px 'Noto Serif TC',serif;color:#DFDFCF">Excel 匯入</span><span style="margin-left:auto;font:600 9px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:2px 7px;border-radius:8px">Preview</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:11px 12px"><span style="width:18px;height:18px;border:2px solid #c3caae;border-radius:4px"></span><span style="font:400 14px 'Noto Serif TC',serif;color:#DFDFCF">卡片設定</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:11px 12px"><span style="width:18px;height:18px;border:2px solid #c3caae;border-radius:4px"></span><span style="font:400 14px 'Noto Serif TC',serif;color:#DFDFCF">人員調度</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:11px 12px"><span style="width:18px;height:18px;border:2px solid #c3caae;border-radius:4px"></span><span style="font:400 14px 'Noto Serif TC',serif;color:#DFDFCF">對帳報表</span></div>
+</div>
+<div style="margin-top:auto;display:flex;align-items:center;gap:10px;padding:12px;border-top:1px solid rgba(255,249,241,.16)"><span style="width:32px;height:32px;border-radius:50%;background:#DFDFCF"></span><div><div style="font:500 13px 'Noto Serif TC',serif;color:#FFF9F1">林婚顧</div><div style="font:400 10px 'Noto Sans TC',sans-serif;color:#a7b08c">Happy Crystal 團隊</div></div></div>
+</div>
+</div></div></div>
+
+</div>
+<p class="dv-next">下一步可說：「賓客管理清單畫面（依桌分組）」 · 「Excel 匯入 Preview 畫面」 · 「後台延伸成桌機寬版」</p>
+</section>
+
+<!-- ================= STAFF PWA ================= -->
+<section class="dv-turn" id="staff">
+<div class="dv-thd"><a class="dv-tid" href="#staff">工作人員 · PWA</a><span class="dv-tname">掃碼報到 · 喜餅核銷</span><span class="dv-tsub">報到可離線／核銷僅線上</span></div>
+<div class="dv-opts">
+
+<!-- 1j check-in -->
+<div class="dv-opt" id="1j">
+<div class="dv-olabel"><a class="dv-oid" href="#1j">1j</a><b>入場報到 · 成員勾選</b>掃碼可離線</div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#14170f">
+<div class="sb" style="color:#fff"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #fff;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;display:flex;flex-direction:column">
+<div style="padding:50px 16px 12px;display:flex;justify-content:center">
+<div style="display:flex;background:rgba(255,255,255,.1);border-radius:22px;padding:4px">
+<span style="font:600 12.5px 'Noto Sans TC',sans-serif;color:#14170f;background:#DFDFCF;padding:8px 18px;border-radius:18px">入場報到</span>
+<span style="font:400 12.5px 'Noto Sans TC',sans-serif;color:#c3caae;padding:8px 18px">喜餅核銷</span>
+</div>
+</div>
+<div style="flex:1;position:relative;margin:6px 16px;border-radius:20px;overflow:hidden;background:radial-gradient(circle at 50% 40%,#2c3326,#14170f)">
+<div style="position: absolute; top: 123px; left: 134px; transform: translate(-50%,-50%); width: 160px; height: 160px">
+<span style="position:absolute;top:0;left:0;width:34px;height:34px;border-top:3px solid #DFDFCF;border-left:3px solid #DFDFCF;border-radius:6px 0 0 0"></span>
+<span style="position:absolute;top:0;right:0;width:34px;height:34px;border-top:3px solid #DFDFCF;border-right:3px solid #DFDFCF;border-radius:0 6px 0 0"></span>
+<span style="position:absolute;bottom:0;left:0;width:34px;height:34px;border-bottom:3px solid #DFDFCF;border-left:3px solid #DFDFCF;border-radius:0 0 0 6px"></span>
+<span style="position:absolute;bottom:0;right:0;width:34px;height:34px;border-bottom:3px solid #DFDFCF;border-right:3px solid #DFDFCF;border-radius:0 0 6px 0"></span>
+</div>
+<div style="position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:6px;font:400 11px 'Noto Sans TC',sans-serif;color:#c3caae"><span style="width:6px;height:6px;border-radius:50%;background:#f0c869;box-shadow:0 0 6px #f0c869"></span>離線模式 · 佇列上傳</div>
+</div>
+<div style="background:#FFF9F1;border-radius:22px 22px 0 0;padding:18px 18px 20px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:600 15px 'Noto Serif TC',serif;color:#2c3326">王家 · 一行 4 位</span><span style="font:500 11px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:3px 9px;border-radius:10px">富貴 12 桌</span></div>
+<div style="margin-top:4px;font:400 11.5px 'Noto Sans TC',sans-serif;color:#8a9270">勾選實際到場者（預設全勾）</div>
+<div style="margin-top:12px;display:flex;flex-direction:column;gap:7px">
+<div style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid rgba(73,82,50,.12);border-radius:11px;padding:9px 12px"><span style="width:20px;height:20px;border-radius:6px;background:#495232;display:flex;align-items:center;justify-content:center"><span style="width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg);margin-top:-2px"></span></span><span style="font:500 13.5px 'Noto Serif TC',serif;color:#2c3326">王品均</span></div>
+<div style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid rgba(73,82,50,.12);border-radius:11px;padding:9px 12px"><span style="width:20px;height:20px;border-radius:6px;background:#495232;display:flex;align-items:center;justify-content:center"><span style="width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg);margin-top:-2px"></span></span><span style="font:500 13.5px 'Noto Serif TC',serif;color:#2c3326">王媽媽</span><span style="margin-left:auto;font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">素食</span></div>
+<div style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid rgba(73,82,50,.12);border-radius:11px;padding:9px 12px"><span style="width:20px;height:20px;border-radius:6px;border:2px solid #b9bfa6"></span><span style="font:500 13.5px 'Noto Serif TC',serif;color:#2c3326">王小妹</span><span style="margin-left:auto;font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">嬰兒椅</span></div>
+</div>
+<button style="margin-top:14px;width:100%;height:48px;border:none;border-radius:24px;background:#495232;color:#FFF9F1;font:600 15px 'Noto Serif TC',serif;letter-spacing:.12em">送出報到 · 3 位</button>
+</div>
+</div>
+</div></div></div>
+
+<!-- 1k cake redemption -->
+<div class="dv-opt" id="1k">
+<div class="dv-olabel"><a class="dv-oid" href="#1k">1k</a><b>喜餅核銷 · 讀款式・原子扣減</b>僅限線上</div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#f3f1e8">
+<div class="sb" style="color:#2c3326"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #2c3326;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:50px 16px 20px;display:flex;flex-direction:column;overflow:auto">
+<div style="display:flex;justify-content:center"><div style="display:flex;background:#e2ddcd;border-radius:22px;padding:4px">
+<span style="font:400 12.5px 'Noto Sans TC',sans-serif;color:#8a9270;padding:8px 18px">入場報到</span>
+<span style="font:600 12.5px 'Noto Sans TC',sans-serif;color:#FFF9F1;background:#495232;padding:8px 18px;border-radius:18px">喜餅核銷</span>
+</div></div>
+<div style="margin-top:14px;background:#fff;border:1px solid rgba(73,82,50,.12);border-radius:16px;padding:14px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:600 15px 'Noto Serif TC',serif;color:#2c3326">王家喜餅配額</span><span style="font:500 11px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:3px 9px;border-radius:10px">共 4 盒</span></div>
+<div style="margin-top:10px;display:flex;justify-content:space-between;font:400 12px 'Noto Sans TC',sans-serif;color:#6b7360;background:#f6f4ec;border-radius:9px;padding:8px 11px"><span>王媽媽 · 鳳梨酥 ×2</span><span style="color:#8a9270">已領 14:02</span></div>
+<div style="margin-top:10px;height:7px;border-radius:5px;background:#e6e3d5;overflow:hidden"><div style="width:50%;height:100%;background:#495232"></div></div>
+<div style="margin-top:7px;font:400 12px 'Noto Sans TC',sans-serif;color:#6b7360">剩餘 <span style="font-weight:700;color:#495232;font-size:14px">2 盒</span></div>
+</div>
+<div style="margin-top:14px;font:500 13px 'Noto Serif TC',serif;color:#2c3326">選擇領取款式 <span style="font-weight:400;font-size:11px;color:#8a9270">（對應報表核銷紀錄）</span></div>
+<div style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;align-items:center;gap:11px;background:#f2f0e6;border:1px solid rgba(73,82,50,.1);border-radius:12px;padding:10px 12px;opacity:.62">
+<span style="width:20px;height:20px;border-radius:50%;border:2px solid #b9bfa6;flex:none"></span>
+<div style="flex:1"><div style="font:500 13.5px 'Noto Serif TC',serif;color:#6b7360">鳳梨酥經典禮盒</div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#a7a58f">剩 0 盒</div></div>
+<span style="font:600 10.5px 'Noto Sans TC',sans-serif;color:#8a9270">已領畢</span>
+</div>
+<div style="display:flex;align-items:center;gap:11px;background:#fff;border:1.5px solid #495232;border-radius:12px;padding:10px 12px">
+<span style="width:20px;height:20px;border-radius:50%;border:2px solid #495232;flex:none;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:#495232"></span></span>
+<div style="flex:1"><div style="font:500 13.5px 'Noto Serif TC',serif;color:#2c3326">蔓越莓手工餅</div><div style="font:400 10.5px 'Noto Sans TC',sans-serif;color:#8a9270">剩 2 盒</div></div>
+<span style="font:600 10.5px 'Noto Sans TC',sans-serif;color:#495232;background:#DFDFCF;padding:3px 9px;border-radius:10px">可領</span>
+</div>
+</div>
+<div style="margin-top:14px;font:500 13px 'Noto Serif TC',serif;color:#2c3326">本次領取盒數</div>
+<div style="margin-top:10px;display:flex;align-items:center;justify-content:center;gap:26px">
+<span style="width:48px;height:48px;border-radius:50%;background:#fff;border:1px solid rgba(73,82,50,.2);display:flex;align-items:center;justify-content:center;font:400 24px sans-serif;color:#495232">−</span>
+<span style="font:600 42px 'Noto Serif TC',serif;color:#2c3326;min-width:52px;text-align:center">1</span>
+<span style="width:48px;height:48px;border-radius:50%;background:#495232;color:#FFF9F1;display:flex;align-items:center;justify-content:center;font:400 24px sans-serif">+</span>
+</div>
+<div style="margin-top:12px;display:flex;align-items:center;gap:8px;background:#f7f0d8;border:1px solid #ecd9a0;border-radius:12px;padding:9px 12px"><span style="width:17px;height:17px;border-radius:50%;background:#e0b23e;color:#fff;font:700 11px sans-serif;display:flex;align-items:center;justify-content:center;flex:none">!</span><span style="font:400 11px/1.5 'Noto Sans TC',sans-serif;color:#7a6a2e">核銷需連線 · 送出後依款式即時原子扣減，防止超發</span></div>
+<button style="margin-top:14px;width:100%;height:48px;border:none;border-radius:24px;background:#495232;color:#FFF9F1;font:600 15px 'Noto Serif TC',serif;letter-spacing:.1em">確認核銷 · 蔓越莓 1 盒</button>
+</div>
+</div></div></div>
+
+<!-- 1m dual-track fallback -->
+<div class="dv-opt" id="1m">
+<div class="dv-olabel"><a class="dv-oid" href="#1m">1m</a><b>雙軌備案 · 注音搜尋＋桌次點選</b>找不到 QR 時</div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#f3f1e8">
+<div class="sb" style="color:#2c3326"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #2c3326;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:50px 16px 18px;display:flex;flex-direction:column">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font:600 16px 'Noto Serif TC',serif;color:#2c3326">手動報到</span><span style="font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">無 QR / 未預載</span></div>
+<div style="margin-top:12px;display:flex;background:#e2ddcd;border-radius:14px;padding:3px">
+<span style="flex:1;text-align:center;font:600 12.5px 'Noto Sans TC',sans-serif;color:#FFF9F1;background:#495232;padding:8px;border-radius:11px">注音／拼音</span>
+<span style="flex:1;text-align:center;font:400 12.5px 'Noto Sans TC',sans-serif;color:#8a9270;padding:8px">依桌次</span>
+</div>
+<div style="margin-top:12px;display:flex;align-items:center;gap:9px;background:#fff;border:1px solid rgba(73,82,50,.16);border-radius:12px;padding:11px 13px">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a9270" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3" stroke-linecap="round"></path></svg>
+<span style="font:400 13.5px 'Noto Serif TC',serif;color:#2c3326">ㄨㄤ</span>
+
+</div>
+
+<div style="margin-top:12px;font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">符合「ㄨㄤ」的賓客</div>
+<div style="margin-top:9px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid rgba(73,82,50,.12);border-radius:12px;padding:10px 12px"><span style="width:34px;height:34px;border-radius:50%;background:#DFDFCF;flex:none"></span><div style="flex:1"><div style="font:500 14px 'Noto Serif TC',serif;color:#2c3326">王品均</div><div style="font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">富貴 12 桌 · 一行 4 位</div></div><span style="font:500 12px 'Noto Sans TC',sans-serif;color:#FFF9F1;background:#495232;padding:7px 14px;border-radius:20px">報到</span></div>
+<div style="display:flex;align-items:center;gap:11px;background:#fff;border:1px solid rgba(73,82,50,.12);border-radius:12px;padding:10px 12px"><span style="width:34px;height:34px;border-radius:50%;background:#e3c9c0;flex:none"></span><div style="flex:1"><div style="font:500 14px 'Noto Serif TC',serif;color:#2c3326">汪敏華</div><div style="font:400 11px 'Noto Sans TC',sans-serif;color:#8a9270">如意 8 桌 · 一行 2 位</div></div><span style="font:500 12px 'Noto Sans TC',sans-serif;color:#FFF9F1;background:#495232;padding:7px 14px;border-radius:20px">報到</span></div>
+<div style="display:flex;align-items:center;gap:11px;background:#f4f2e9;border:1px solid rgba(73,82,50,.1);border-radius:12px;padding:10px 12px;opacity:.7"><span style="width:34px;height:34px;border-radius:50%;background:#cfd3c0;flex:none"></span><div style="flex:1"><div style="font:500 14px 'Noto Serif TC',serif;color:#6b7360">王曉琪</div><div style="font:400 11px 'Noto Sans TC',sans-serif;color:#a7b08c">平安 5 桌 · 已報到</div></div><span style="font:500 11px 'Noto Sans TC',sans-serif;color:#8a9270">✓ 完成</span></div>
+</div>
+</div>
+</div></div></div>
+
+<!-- 1n ipad kiosk -->
+<div class="dv-opt" id="1n">
+<div class="dv-olabel"><a class="dv-oid" href="#1n">1n</a><b>自助報到 iPad Kiosk</b>引導使用模式鎖定</div>
+<div style="position:relative;width:660px;height:486px;background:#14170f;border-radius:30px;padding:14px;box-shadow:0 24px 56px -20px rgba(44,51,38,.55)">
+<div style="position:absolute;left:6px;top:50%;transform:translateY(-50%);width:5px;height:44px;background:#2a2f22;border-radius:3px"></div>
+<div style="position:relative;width:100%;height:100%;border-radius:18px;overflow:hidden;background:#495232;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cg fill='none' stroke='%23FFF9F1' stroke-width='1' opacity='0.3'%3E%3Cpath d='M75 145 C 62 110 88 92 76 55 C 70 40 78 22 75 8'/%3E%3Cpath d='M76 120 C 90 116 100 104 104 92'/%3E%3Cpath d='M75 96 C 60 92 50 80 46 68'/%3E%3Cpath d='M76 70 C 90 66 98 56 100 46'/%3E%3C/g%3E%3C/svg%3E&quot;);display:flex;flex-direction:column">
+<div style="position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;z-index:5">
+<span style="display:flex;align-items:center;gap:8px;font:400 11px 'Noto Sans TC',sans-serif;color:#c3caae"><span style="width:6px;height:6px;border-radius:50%;background:#9fce7f;box-shadow:0 0 6px #9fce7f"></span>引導使用模式 · 單一 App 鎖定</span>
+<span style="font:400 11px 'Noto Sans TC',sans-serif;color:#c3caae">螢幕常亮</span>
+</div>
+<div style="flex:1;display:flex;align-items:center;justify-content:center;gap:44px;padding:0 40px">
+<div style="text-align:left;max-width:250px">
+<div style="font:400 12px 'Forum',serif;letter-spacing:.34em;color:#c3caae;text-indent:.34em">WELCOME</div>
+<div style="margin-top:14px;font:400 44px/1 'Pinyon Script',cursive;color:#FFF9F1">Pinjun &amp; Kevin</div>
+<div style="margin-top:12px;font:400 16px 'Forum',serif;letter-spacing:.2em;color:#eef1e6">品均 ＆ 凱文 婚宴</div>
+<div style="margin-top:16px;font:400 14px/1.7 'Noto Sans TC',sans-serif;color:#d7dcc6">歡迎蒞臨！請將您的<br>報到 QR Code 對準右方掃描區</div>
+<div style="margin-top:16px;font:400 11.5px 'Noto Sans TC',sans-serif;color:#a7b08c">掃描成功後將自動報到並回到首頁</div>
+</div>
+<div style="width:214px;height:214px;border-radius:24px;background:rgba(20,23,15,.35);border:1px solid rgba(255,249,241,.2);position:relative;display:flex;align-items:center;justify-content:center">
+<div style="position:relative;width:150px;height:150px">
+<span style="position:absolute;top:0;left:0;width:36px;height:36px;border-top:3px solid #FFF9F1;border-left:3px solid #FFF9F1;border-radius:8px 0 0 0"></span>
+<span style="position:absolute;top:0;right:0;width:36px;height:36px;border-top:3px solid #FFF9F1;border-right:3px solid #FFF9F1;border-radius:0 8px 0 0"></span>
+<span style="position:absolute;bottom:0;left:0;width:36px;height:36px;border-bottom:3px solid #FFF9F1;border-left:3px solid #FFF9F1;border-radius:0 0 0 8px"></span>
+<span style="position:absolute;bottom:0;right:0;width:36px;height:36px;border-bottom:3px solid #FFF9F1;border-right:3px solid #FFF9F1;border-radius:0 0 8px 0"></span>
+<div style="position:absolute;top:50%;left:8px;right:8px;height:2px;background:#9fce7f;box-shadow:0 0 10px #9fce7f"></div>
+</div>
+</div>
+</div>
+<div style="text-align:center;padding:0 0 20px;font:400 11px 'Noto Sans TC',sans-serif;color:#a7b08c">需協助嗎？請洽現場工作人員</div>
+</div>
+</div>
+</div>
+
+</div>
+<p class="dv-next">下一步可說：「核銷成功／喜餅已領畢的提示狀態」 · 「離線報到佇列同步中的畫面」 · 「桌次清單模式（依桌點選報到）」</p>
+</section>
+
+<!-- ================= DASHBOARD + VIP ================= -->
+<section class="dv-turn" id="dash">
+<div class="dv-thd"><a class="dv-tid" href="#dash">實時儀表板 · VIP 推播</a><span class="dv-tname">WebSocket 即時狀態</span><span class="dv-tsub">報到率／各桌需求／VIP 到場推播</span></div>
+<div class="dv-opts">
+
+<!-- 1l dashboard -->
+<div class="dv-opt" id="1l">
+<div class="dv-olabel"><a class="dv-oid" href="#1l">1l</a><b>即時儀表板 + VIP 推播</b></div>
+<div class="phone"><div class="notch"></div><div class="scr" style="background:#495232">
+<div class="sb" style="color:#DFDFCF"><span>12:30</span><span class="sbdot"><span style="width:15px;height:9px;border:1px solid #DFDFCF;border-radius:2px;display:inline-block"></span></span></div>
+<div style="position:absolute;inset:0;padding:52px 18px 22px;display:flex;flex-direction:column;overflow:auto">
+<div style="display:flex;justify-content:space-between;align-items:center"><span style="font:600 17px 'Noto Serif TC',serif;color:#FFF9F1">即時儀表板</span><span style="display:flex;align-items:center;gap:6px;font:400 11px 'Noto Sans TC',sans-serif;color:#c3caae"><span style="width:7px;height:7px;border-radius:50%;background:#9fce7f;box-shadow:0 0 8px #9fce7f"></span>LIVE</span></div>
+<div style="margin-top:6px;font:400 11.5px 'Noto Sans TC',sans-serif;color:#a7b08c">品均＆凱文｜午宴</div>
+<div style="margin-top:16px;display:flex;justify-content:center">
+<div style="width:150px;height:150px;border-radius:50%;background:conic-gradient(#DFDFCF 0 62%,rgba(255,249,241,.15) 0);display:flex;align-items:center;justify-content:center">
+<div style="width:118px;height:118px;border-radius:50%;background:#495232;display:flex;flex-direction:column;align-items:center;justify-content:center"><span style="font:600 38px 'Noto Serif TC',serif;color:#FFF9F1">62%</span><span style="font:400 11px 'Noto Sans TC',sans-serif;color:#a7b08c">155 / 250 人</span></div>
+</div>
+</div>
+<div style="margin-top:16px;display:flex;gap:9px">
+<div style="flex:1;background:rgba(255,249,241,.08);border-radius:13px;padding:11px;text-align:center"><div style="font:600 20px 'Noto Serif TC',serif;color:#FFF9F1">18</div><div style="font:400 10px 'Noto Sans TC',sans-serif;color:#a7b08c">素食實到</div></div>
+<div style="flex:1;background:rgba(255,249,241,.08);border-radius:13px;padding:11px;text-align:center"><div style="font:600 20px 'Noto Serif TC',serif;color:#FFF9F1">4</div><div style="font:400 10px 'Noto Sans TC',sans-serif;color:#a7b08c">嬰兒椅</div></div>
+<div style="flex:1;background:rgba(255,249,241,.08);border-radius:13px;padding:11px;text-align:center"><div style="font:600 20px 'Noto Serif TC',serif;color:#FFF9F1">88</div><div style="font:400 10px 'Noto Sans TC',sans-serif;color:#a7b08c">喜餅剩</div></div>
+</div>
+<div style="margin-top:16px;background:#FFF9F1;border-radius:15px;padding:13px 14px;display:flex;gap:11px;align-items:flex-start;box-shadow:0 10px 26px -10px rgba(0,0,0,.4)">
+<span style="width:34px;height:34px;border-radius:10px;background:#495232;flex:none;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFF9F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.7 21a2 2 0 0 1-3.4 0"></path></svg></span>
+<div style="flex:1"><div style="font:600 12.5px 'Noto Serif TC',serif;color:#495232">VIP 到場 · 品均＆凱文喜宴</div><div style="margin-top:3px;font:400 12px/1.5 'Noto Sans TC',sans-serif;color:#2c3326">王大明 總經理 已報到！座位：VIP 1 桌</div><div style="margin-top:4px;font:400 10px 'Noto Sans TC',sans-serif;color:#8a9270">剛剛 · 推播已送達 6 位在勤人員</div></div>
+</div>
+<div style="margin-top:14px;font:500 12px 'Noto Serif TC',serif;color:#DFDFCF">各桌實到</div>
+<div style="margin-top:9px;display:flex;flex-direction:column;gap:7px">
+<div style="display:flex;align-items:center;gap:10px"><span style="font:400 11px 'Noto Sans TC',sans-serif;color:#c3caae;width:56px">VIP 1 桌</span><div style="flex:1;height:7px;border-radius:4px;background:rgba(255,249,241,.15);overflow:hidden"><div style="width:90%;height:100%;background:#DFDFCF"></div></div><span style="font:400 10px 'Noto Sans TC',sans-serif;color:#a7b08c">9/10</span></div>
+<div style="display:flex;align-items:center;gap:10px"><span style="font:400 11px 'Noto Sans TC',sans-serif;color:#c3caae;width:56px">富貴 12</span><div style="flex:1;height:7px;border-radius:4px;background:rgba(255,249,241,.15);overflow:hidden"><div style="width:40%;height:100%;background:#DFDFCF"></div></div><span style="font:400 10px 'Noto Sans TC',sans-serif;color:#a7b08c">4/10</span></div>
+<div style="display:flex;align-items:center;gap:10px"><span style="font:400 11px 'Noto Sans TC',sans-serif;color:#c3caae;width:56px">如意 8</span><div style="flex:1;height:7px;border-radius:4px;background:rgba(255,249,241,.15);overflow:hidden"><div style="width:70%;height:100%;background:#DFDFCF"></div></div><span style="font:400 10px 'Noto Sans TC',sans-serif;color:#a7b08c">7/10</span></div>
+</div>
+</div>
+</div></div></div>
+
+</div>
+<p class="dv-next">下一步可說：「儀表板延伸成桌機大屏（多場並列）」 · 「VIP 推播的鎖屏通知樣式」 · 「選定整體方向後，把賓客端做成可傾斜互動原型」</p>
+</section>
+</x-dc>
+</body>
+</html>
